@@ -2099,62 +2099,6 @@ Admin Panel
 </main>
 
 <script>
-// ── AUTO DIAGNOSTIC ──
-window.addEventListener('DOMContentLoaded', function() {
-  try {
-    var diag = [];
-    
-    // Check all critical vars exist
-    var vars = ['TEAM','TITLES','BADGES','KPI_DATA','MONTHLY_METRICS',
-                'ANNUAL_SELF_ASSESSMENT','PROC_DATA','OB_DEFAULTS',
-                'MEMBER_ROLES','ROLE_COLORS','statusClass','MONTHS',
-                'monthlyScores','annualScores'];
-    vars.forEach(function(v) {
-      try { 
-        if(typeof eval(v) === 'undefined') diag.push('UNDEF:'+v);
-      } catch(e) { diag.push('ERR:'+v); }
-    });
-    
-    // Check critical functions
-    var fns = ['sv','st','tc','renderProfiles','renderKPI','renderProc',
-               'updateMrConduct','updateAnnual','recalcMonthly','recalcAnnual'];
-    fns.forEach(function(f) {
-      try {
-        if(typeof eval(f) !== 'function') diag.push('NOFN:'+f);
-      } catch(e) { diag.push('FNERR:'+f); }
-    });
-    
-    // Check DOM elements
-    var els = ['profile-grid','proj-tbody','cap-grid','kpi-des-content',
-               'view-kpi','view-sla','view-process','view-admin','proc-hs'];
-    els.forEach(function(id) {
-      if(!document.getElementById(id)) diag.push('NODOM:'+id);
-    });
-    
-    // Check if init ran
-    var pg = document.getElementById('profile-grid');
-    if(pg && pg.innerHTML.length < 100) diag.push('INIT:profile-grid empty');
-    var ph = document.getElementById('proc-hs');
-    if(ph && ph.innerHTML.length < 100) diag.push('INIT:proc-hs empty');
-    
-    window._NEXA_DIAG = diag;
-    
-    if(diag.length === 0) {
-      console.log('[NEXA] All checks passed ✓');
-    } else {
-      console.error('[NEXA] Issues found:', diag.join(', '));
-      // Show visible error panel
-      var panel = document.createElement('div');
-      panel.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#C0392B;color:#fff;padding:10px 16px;font-size:12px;font-family:monospace;z-index:9999;max-height:200px;overflow-y:auto';
-      panel.innerHTML = '<strong>DEBUG:</strong> ' + diag.join(' | ') + ' <button onclick="this.parentElement.remove()" style="float:right;background:none;border:1px solid #fff;color:#fff;padding:2px 8px;cursor:pointer">×</button>';
-      document.body.appendChild(panel);
-    }
-  } catch(e) {
-    console.error('[NEXA DIAG ERROR]', e);
-  }
-});
-
-
 // ── DATA ──
 const statusClass={
   'Live':'st-live','Live / Warranty':'st-war','In Development':'st-dev',
@@ -4194,5 +4138,51 @@ loadAdminTeam();
 renderAdminTeam();
 loadGeneralSettings();
 </script>
+
+<div id="nexa-test-panel" style="position:fixed;top:0;right:0;width:300px;background:#9354FF;color:white;padding:12px;font-size:11px;font-family:monospace;z-index:99999;border-radius:0 0 0 8px">
+  <div style="font-weight:bold;margin-bottom:6px">NEXA DEBUG v7</div>
+  <div id="nexa-debug-output">Loading...</div>
+  <button onclick="document.getElementById('nexa-test-panel').remove()" style="margin-top:8px;background:white;color:#9354FF;border:none;padding:3px 8px;cursor:pointer;border-radius:4px;font-size:10px">Close</button>
+</div>
+<script>
+(function() {
+  function update(msg) {
+    var el = document.getElementById('nexa-debug-output');
+    if(el) el.innerHTML = msg;
+  }
+  
+  // Run after page loads
+  window.onload = function() {
+    var checks = [];
+    
+    // Check vars
+    try { checks.push('TEAM:' + (typeof TEAM !== 'undefined' ? TEAM.length : 'UNDEF')); } catch(e) { checks.push('TEAM:ERR'); }
+    try { checks.push('KPI:' + (typeof KPI_DATA !== 'undefined' ? 'ok' : 'UNDEF')); } catch(e) { checks.push('KPI:ERR'); }
+    try { checks.push('sv:' + (typeof sv === 'function' ? 'ok' : 'UNDEF')); } catch(e) { checks.push('sv:ERR'); }
+    try { checks.push('st:' + (typeof st === 'function' ? 'ok' : 'UNDEF')); } catch(e) { checks.push('st:ERR'); }
+    
+    // Check DOM
+    var pg = document.getElementById('profile-grid');
+    checks.push('profiles:' + (pg ? pg.innerHTML.length : 'MISSING'));
+    var kv = document.getElementById('view-kpi');
+    checks.push('kpi-view:' + (kv ? (kv.classList.contains('active') ? 'active' : 'hidden') : 'MISSING'));
+    
+    // Test sv function
+    try {
+      var fakeBtn = document.createElement('button');
+      fakeBtn.className = 'nb';
+      sv('kpi', fakeBtn);
+      var kpiView = document.getElementById('view-kpi');
+      checks.push('sv-test:' + (kpiView && kpiView.classList.contains('active') ? 'OK' : 'FAIL'));
+      sv('dashboard', fakeBtn);
+    } catch(e) {
+      checks.push('sv-test:ERR-' + e.message.substring(0,20));
+    }
+    
+    update(checks.join('<br>'));
+  };
+})();
+</script>
+
 </body>
 </html>
