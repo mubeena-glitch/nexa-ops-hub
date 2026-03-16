@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>NEXA Web Team — Operations Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
 :root{
@@ -21,7 +20,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--blk);min-height:100vh;overflow-x:hidden}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--blk);min-height:100vh;overflow-x:hidden}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--px)}::-webkit-scrollbar-thumb{background:var(--pl);border-radius:4px}
 
 /* SIDEBAR */
@@ -251,7 +250,7 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--b
 .filt-btn{padding:5px 13px;border-radius:20px;font-size:11.5px;font-weight:500;cursor:pointer;border:1.5px solid var(--brd);background:var(--wht);color:var(--g2);transition:all var(--tr);font-family:'Poppins',sans-serif}
 .filt-btn:hover{border-color:var(--p);color:var(--p)}
 .filt-btn.active{background:var(--p);color:#fff;border-color:var(--p)}
-.proj-search{padding:7px 12px;border:1.5px solid var(--brd);border-radius:var(--rs);font-size:12.5px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--wht);color:var(--blk);min-width:220px}
+.proj-search{padding:7px 12px;border:1.5px solid var(--brd);border-radius:var(--rs);font-size:12.5px;font-family:'Poppins',sans-serif;background:var(--wht);color:var(--blk);min-width:220px}
 .proj-search:focus{outline:none;border-color:var(--p)}
 .proj-table-wrap{overflow-x:auto;border-radius:var(--rad);border:1.5px solid var(--brd);background:var(--wht)}
 .team-chips{display:flex;flex-wrap:wrap;gap:3px}
@@ -524,7 +523,7 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--b
 <div class="sb-logo">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQDIrcT_zWeHX-8WAYX8x9b_MveprKSWGEgQ&s" alt="NEXA" onerror="this.style.display='none';document.getElementById('lfb').style.display='block'">
 <span id="lfb" class="sb-logo-fb">NEXA</span>
-<div><div class="sb-version" style="color:var(--grn)">BUILD 2026-03-16-v7 · Operations Hub</div></div>
+<div><div class="sb-version">Operations Hub</div></div>
 </div>
 <div class="sb-user">
 <div class="sb-avatar">M</div>
@@ -976,7 +975,7 @@ Admin Panel
 </div>
 </div>
 <div class="gc2">
-<div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">File Delivery Standards</div></div></div><div class="chv">▼</div></div>
+<div class="card open"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">File Delivery Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Design tool</span><span class="iv">Figma (primary) — all files in NEXA team workspace</span></div>
 <div class="ir"><span class="ik">Layer naming</span><span class="iv">All layers named descriptively. No unnamed layers in handoff files.</span></div>
@@ -985,7 +984,7 @@ Admin Panel
 <div class="ir"><span class="ik">Upload</span><span class="iv">Final Figma link + all assets uploaded to project portal before handoff marked complete</span></div>
 </div>
 </div>
-<div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">SLA Quick Reference</div></div></div><div class="chv">▼</div></div>
+<div class="card open"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">SLA Quick Reference</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Homepage concept (2 directions)</span><span class="iv"><span class="tb">≤ 8 working hours</span> after brief</span></div>
 <div class="ir"><span class="ik">Inner page (per page)</span><span class="iv"><span class="tb">≤ 4 hours</span> per page</span></div>
@@ -1014,7 +1013,7 @@ Admin Panel
 </div></div>
 </div>
 <div class="gc2">
-<div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Performance Standards</div></div></div><div class="chv">▼</div></div>
+<div class="card open"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Performance Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb">≥ 90</span> on all new builds</span></div>
 <div class="ir"><span class="ik">PageSpeed mobile</span><span class="iv"><span class="tb">≥ 75</span> on all new builds</span></div>
@@ -1024,7 +1023,7 @@ Admin Panel
 <div class="ir"><span class="ik">Bugs per feature</span><span class="iv"><span class="tb">≤ 2</span> in QA or production</span></div>
 </div>
 </div>
-<div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">SLA Quick Reference</div></div></div><div class="chv">▼</div></div>
+<div class="card open"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">SLA Quick Reference</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Homepage build (from handoff)</span><span class="iv"><span class="tb">≤ 10 working hours</span></span></div>
 <div class="ir"><span class="ik">Inner page – template-based</span><span class="iv"><span class="tb">≤ 3 hrs</span> per page</span></div>
@@ -1049,7 +1048,7 @@ Admin Panel
 <div class="step"><div class="snum">09</div><div class="sline"></div><div class="sbody"><div class="stitle">Post-Project Close</div><div class="sdesc">Ensure all files and credentials stored correctly. Send CSAT form to client. Archive project in Forecast.</div></div></div>
 </div></div>
 </div>
-<div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Forecast Rules</div></div></div><div class="chv">▼</div></div>
+<div class="card open"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Forecast Rules</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Task creation rule</span><span class="iv">All tasks in Forecast before work begins. Zero undocumented work.</span></div>
 <div class="ir"><span class="ik">Required per task</span><span class="iv">Assigned team member · Estimated hours · Due date</span></div>
@@ -1071,7 +1070,7 @@ Admin Panel
 <div class="step"><div class="snum">07</div><div class="sline"></div><div class="sbody"><div class="stitle">Go-Live Migration</div><div class="sdesc">Only after PM written sign-off, migrate to live portal/site. Re-test all live integrations immediately after migration.</div></div></div>
 </div></div>
 </div>
-<div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Integration Quality Standards</div></div></div><div class="chv">▼</div></div>
+<div class="card open"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Integration Quality Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Form test requirement</span><span class="iv"><span class="tb">100%</span> — every form submission tested before staging shared with client</span></div>
 <div class="ir"><span class="ik">Tracking verification</span><span class="iv"><span class="tb">100%</span> — all events verified in GTM Preview or GA4 DebugView before go-live</span></div>
@@ -1111,7 +1110,7 @@ Admin Panel
 </div>
 </div>
 <div class="gc2">
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">HubSpot Design Rules</div><div class="cs">Mandatory for all HubSpot projects</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <ul class="cl">
@@ -1124,7 +1123,7 @@ Admin Panel
 </ul>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Quality Completion Criteria</div><div class="cs">All items required before handoff</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <ul class="cl">
@@ -1140,7 +1139,7 @@ Admin Panel
 </div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Design SLAs — Quick Reference</div><div class="cs">Linked to Designer KPI targets</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Task</th><th>Response Time</th><th>Delivery Target</th><th>KPI Link</th></tr></thead><tbody>
@@ -1177,7 +1176,7 @@ Admin Panel
 </div>
 </div>
 <div class="gc2">
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Platform-Specific Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div style="font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#1B5FA3;margin:10px 0 7px">HubSpot CMS</div>
@@ -1202,7 +1201,7 @@ Admin Panel
 </ul>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Development SLAs — Quick Reference</div><div class="cs">Linked to Developer KPI targets</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Task</th><th>Delivery Target</th><th>KPI Link</th></tr></thead><tbody>
@@ -1266,7 +1265,7 @@ Admin Panel
 </div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Timelines &amp; Quality Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="gc2" style="margin-top:4px">
@@ -1313,7 +1312,7 @@ Admin Panel
 </div>
 </div>
 <div class="gc2">
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Priority Classification</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div style="display:grid;gap:8px;margin-top:6px">
@@ -1324,7 +1323,7 @@ Admin Panel
 </div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Report Structure</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">1. Executive Summary</span><span class="iv">3–5 sentence overview of scope, key findings and priority action</span></div>
@@ -1391,7 +1390,7 @@ Admin Panel
 </div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Monthly Maintenance Report</div><div class="cs">Delivered by 5th of each following month</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div style="font-size:12px;color:var(--g2);margin-bottom:12px">Every maintenance client receives a monthly report covering:</div>
@@ -1440,7 +1439,7 @@ Admin Panel
 </tbody></table>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">2. Quality Standards</div><div class="cs">Every standard is a KPI target — failing these affects the quarterly score</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Design approval rate</span><span class="iv"><span class="tb">≥ 85%</span> approved on first or second client review &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
@@ -1453,7 +1452,7 @@ Admin Panel
 <div class="ir"><span class="ik">AI tool usage</span><span class="iv"><span class="tb">≥ 30%</span> of projects must use AI tools in the design workflow (Figma AI, Midjourney or equivalent) &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">3. Professional Conduct Standards</div><div class="cs">Binding requirements — failure treated the same as a delivery breach</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="gc2">
@@ -1479,7 +1478,7 @@ Admin Panel
 </div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">4. SLA Exclusions</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Incomplete brief</span><span class="iv">Delays caused by incomplete briefs or missing client assets are not counted against the designer's SLA. Must be flagged to PM immediately.</span></div>
@@ -1487,7 +1486,7 @@ Admin Panel
 <div class="ir"><span class="ik">Waiting on PM or client input</span><span class="iv">SLA timer pauses when designer is waiting for PM or client input. The pause must be flagged to PM to activate — it is not automatic.</span></div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">5. Breach Escalation</div><div class="cs">Applies to both delivery and conduct breaches</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="breach-grid" style="margin-top:6px">
@@ -1527,7 +1526,7 @@ Admin Panel
 </tbody></table>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">2. Quality &amp; Performance Standards</div><div class="cs">Every standard is a KPI target with a weighted score</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb">≥ 90</span> on all new builds &nbsp;<span class="wp">KPI weight: 4%</span></span></div>
@@ -1543,7 +1542,7 @@ Admin Panel
 <div class="ir"><span class="ik">AI tool usage</span><span class="iv"><span class="tb">≥ 50%</span> of development tasks must use AI tools &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">3. Go-Live Rules</div><div class="cs">Non-negotiable — applies to every project launch</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="alert alert-r" style="margin-top:0"><strong>Monday–Thursday Only.</strong> Friday, Saturday and Sunday go-lives are not permitted except with written Partner approval. This rule ensures support is available in the 24 hours immediately after launch.</div>
@@ -1553,7 +1552,7 @@ Admin Panel
 <div class="ir"><span class="ik">Critical escalation</span><span class="iv">Live site down or critical failure → PM and Partner notified simultaneously within 30 minutes</span></div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">4. Professional Conduct Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="gc2">
@@ -1574,7 +1573,7 @@ Admin Panel
 </div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">5. Breach Escalation</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="breach-grid" style="margin-top:6px">
@@ -1611,7 +1610,7 @@ Admin Panel
 </tbody></table>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">2. Quality Standards</div><div class="cs">Every standard is a KPI target</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="ir"><span class="ik">Form test requirement</span><span class="iv"><span class="tb">100%</span> — every form submission tested before staging is shared with client &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
@@ -1624,7 +1623,7 @@ Admin Panel
 <div class="ir"><span class="ik">HubSpot certification</span><span class="iv"><span class="tb">≥ 1 certification</span> per quarter (CMS Developer, Workflow, Ops Hub) &nbsp;<span class="wp">KPI weight: 4%</span></span></div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">3. Professional Conduct Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="gc2">
@@ -1643,7 +1642,7 @@ Admin Panel
 </div>
 </div>
 </div>
-<div class="card">
+<div class="card open">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">4. Breach Escalation</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div class="breach-grid" style="margin-top:6px">
@@ -3171,8 +3170,8 @@ function renderMrScorecard(member, role, period, existing){
     html += `<tr>
       <td class="km">${m.metric}</td>
       <td><span class="tb">${m.target}</span></td>
-      <td><input type="text" id="mrv-${i}" value="${val}" placeholder="e.g. 94%" style="border:1.5px solid var(--pl);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--px);color:var(--blk);width:120px"></td>
-      <td><select id="mrs-${i}" onchange="setMetricStatus(this)" style="border:1.5px solid var(--pl);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:${stBg};color:${stColor};border-color:${stColor==='var(--g3)'?'var(--pl)':stColor}">
+      <td><input type="text" id="mrv-${i}" value="${val}" placeholder="e.g. 94%" style="border:1.5px solid var(--pl);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Poppins',sans-serif;background:var(--px);color:var(--blk);width:120px"></td>
+      <td><select id="mrs-${i}" onchange="setMetricStatus(this)" style="border:1.5px solid var(--pl);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Poppins',sans-serif;background:${stBg};color:${stColor};border-color:${stColor==='var(--g3)'?'var(--pl)':stColor}">
         <option value="">— Select —</option>
         <option value="met" ${st==='met'?'selected':''}>✓ Met</option>
         <option value="missed" ${st==='missed'?'selected':''}>✗ Missed</option>
@@ -3220,11 +3219,11 @@ function renderMrScorecard(member, role, period, existing){
   html += `<div class="card" style="margin-top:6px"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">📝 Review Notes &amp; Action Items</div></div></div><div class="chv">▼</div></div>
     <div class="cb"><div style="display:grid;gap:12px">
       <div><div style="font-size:11px;font-weight:600;color:var(--grn);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Wins &amp; Highlights</div>
-        <textarea id="mr-wins" rows="3" placeholder="Strong work, positive feedback, process improvements..." style="width:100%;border:1.5px solid var(--gnb2);border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--gnb);color:var(--blk);resize:vertical">${w}</textarea></div>
+        <textarea id="mr-wins" rows="3" placeholder="Strong work, positive feedback, process improvements..." style="width:100%;border:1.5px solid var(--gnb2);border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',sans-serif;background:var(--gnb);color:var(--blk);resize:vertical">${w}</textarea></div>
       <div><div style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Challenges &amp; Blockers</div>
-        <textarea id="mr-challenges" rows="3" placeholder="Issues that affected delivery, quality or collaboration..." style="width:100%;border:1.5px solid #FFBBB7;border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--rdb);color:var(--blk);resize:vertical">${ch}</textarea></div>
+        <textarea id="mr-challenges" rows="3" placeholder="Issues that affected delivery, quality or collaboration..." style="width:100%;border:1.5px solid #FFBBB7;border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',sans-serif;background:var(--rdb);color:var(--blk);resize:vertical">${ch}</textarea></div>
       <div><div style="font-size:11px;font-weight:600;color:var(--amb);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Action Items for Next Month</div>
-        <textarea id="mr-actions" rows="3" placeholder="Specific actions, targets and development areas for next month..." style="width:100%;border:1.5px solid #FCD34D;border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--amb2);color:var(--blk);resize:vertical">${ac}</textarea></div>
+        <textarea id="mr-actions" rows="3" placeholder="Specific actions, targets and development areas for next month..." style="width:100%;border:1.5px solid #FCD34D;border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',sans-serif;background:var(--amb2);color:var(--blk);resize:vertical">${ac}</textarea></div>
     </div></div>
   </div>
   <div class="kpi-actions" style="margin-top:14px">
@@ -3388,7 +3387,7 @@ function renderArScorecard(member, role, period, existing){
     sec.qs.forEach((q,qi) => {
       const savedAns = existing && existing.answers && existing.answers[qIndex] ? existing.answers[qIndex] : '';
       html += `<div style="margin-bottom:12px"><div style="font-size:12.5px;font-weight:600;color:var(--blk);margin-bottom:5px">Q${qIndex+1}: ${q}</div>
-        <textarea id="arq-${qIndex}" rows="3" placeholder="Answer with specific project names and data..." style="width:100%;border:1.5px solid var(--pl);border-radius:8px;padding:10px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--px);color:var(--blk);resize:vertical">${savedAns}</textarea></div>`;
+        <textarea id="arq-${qIndex}" rows="3" placeholder="Answer with specific project names and data..." style="width:100%;border:1.5px solid var(--pl);border-radius:8px;padding:10px;font-size:12px;font-family:'Poppins',sans-serif;background:var(--px);color:var(--blk);resize:vertical">${savedAns}</textarea></div>`;
       qIndex++;
     });
     html += `</div>`;
@@ -3439,11 +3438,11 @@ function renderArScorecard(member, role, period, existing){
   html += `<div class="card" style="margin-top:6px"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><span class="stag tp">PART D</span><div><div class="ct">Manager Overall Assessment</div></div></div><div class="chv">▼</div></div><div class="cb">
     <div style="display:grid;gap:12px">
       <div><div style="font-size:11px;font-weight:600;color:var(--grn);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Key Strengths This Year</div>
-        <textarea id="ar-strengths" rows="3" placeholder="Specific strengths backed by examples and data..." style="width:100%;border:1.5px solid var(--gnb2);border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--gnb);color:var(--blk);resize:vertical">${str}</textarea></div>
+        <textarea id="ar-strengths" rows="3" placeholder="Specific strengths backed by examples and data..." style="width:100%;border:1.5px solid var(--gnb2);border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',sans-serif;background:var(--gnb);color:var(--blk);resize:vertical">${str}</textarea></div>
       <div><div style="font-size:11px;font-weight:600;color:var(--amb);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Development Areas for Next Year</div>
-        <textarea id="ar-dev" rows="3" placeholder="Specific, measurable development targets..." style="width:100%;border:1.5px solid #FCD34D;border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--amb2);color:var(--blk);resize:vertical">${dev}</textarea></div>
+        <textarea id="ar-dev" rows="3" placeholder="Specific, measurable development targets..." style="width:100%;border:1.5px solid #FCD34D;border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',sans-serif;background:var(--amb2);color:var(--blk);resize:vertical">${dev}</textarea></div>
       <div><div style="font-size:11px;font-weight:600;color:var(--p);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Overall Performance Summary</div>
-        <textarea id="ar-summary" rows="4" placeholder="Narrative summary for team member record..." style="width:100%;border:1.5px solid var(--pl);border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--px);color:var(--blk);resize:vertical">${sum}</textarea></div>
+        <textarea id="ar-summary" rows="4" placeholder="Narrative summary for team member record..." style="width:100%;border:1.5px solid var(--pl);border-radius:8px;padding:10px;font-size:12.5px;font-family:'Poppins',sans-serif;background:var(--px);color:var(--blk);resize:vertical">${sum}</textarea></div>
     </div></div></div>`;
 
   // PART E: Goals
@@ -3451,9 +3450,9 @@ function renderArScorecard(member, role, period, existing){
   html += `<div class="card" style="margin-top:6px"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><span class="stag tp">PART E</span><div><div class="ct">Development Goals for Next Year</div></div></div><div class="chv">▼</div></div><div class="cb">
     <table class="tbl" style="margin-top:0"><thead><tr><th>Development Goal</th><th>Action Plan</th><th>Target Date</th></tr></thead><tbody>
     ${savedGoals.map((g,i)=>`<tr>
-      <td><input id="arg-${i}-g" type="text" value="${g.g||''}" placeholder="Goal ${i+1}..." style="width:100%;border:1.5px solid var(--pl);border-radius:6px;padding:6px 8px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--px);color:var(--blk)"></td>
-      <td><input id="arg-${i}-a" type="text" value="${g.a||''}" placeholder="Action plan..." style="width:100%;border:1.5px solid var(--pl);border-radius:6px;padding:6px 8px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--px);color:var(--blk)"></td>
-      <td><input id="arg-${i}-d" type="text" value="${g.d||''}" placeholder="e.g. Q3 2026" style="width:100%;border:1.5px solid var(--pl);border-radius:6px;padding:6px 8px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--px);color:var(--blk)"></td>
+      <td><input id="arg-${i}-g" type="text" value="${g.g||''}" placeholder="Goal ${i+1}..." style="width:100%;border:1.5px solid var(--pl);border-radius:6px;padding:6px 8px;font-size:12px;font-family:'Poppins',sans-serif;background:var(--px);color:var(--blk)"></td>
+      <td><input id="arg-${i}-a" type="text" value="${g.a||''}" placeholder="Action plan..." style="width:100%;border:1.5px solid var(--pl);border-radius:6px;padding:6px 8px;font-size:12px;font-family:'Poppins',sans-serif;background:var(--px);color:var(--blk)"></td>
+      <td><input id="arg-${i}-d" type="text" value="${g.d||''}" placeholder="e.g. Q3 2026" style="width:100%;border:1.5px solid var(--pl);border-radius:6px;padding:6px 8px;font-size:12px;font-family:'Poppins',sans-serif;background:var(--px);color:var(--blk)"></td>
     </tr>`).join('')}
     </tbody></table></div></div>`;
 
