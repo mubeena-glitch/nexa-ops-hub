@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NEXA Test</title>
+<style>
+body { font-family: sans-serif; padding: 20px; background: #f0f0f0; }
+.view { display: none; background: white; padding: 20px; border-radius: 8px; margin-top: 10px; }
+.view.active { display: block; }
+.nav { display: flex; gap: 10px; flex-wrap: wrap; }
+button { padding: 8px 16px; cursor: pointer; background: #9354FF; color: white; border: none; border-radius: 6px; font-size: 14px; }
+#status { background: #333; color: #0f0; padding: 10px; font-family: monospace; border-radius: 6px; margin-top: 10px; font-size: 12px; }
+</style>
+</head>
+<body>
+<h2>NEXA Tab Test</h2>
+<div class="nav">
+  <button onclick="show('a')">Tab A</button>
+  <button onclick="show('b')">Tab B</button>
+  <button onclick="show('c')">Tab C</button>
+</div>
+<div id="status">Click a tab to test</div>
+<div id="view-a" class="view active"><h3>Tab A Content</h3><p>This is tab A. If you can see this, basic tab switching works.</p></div>
+<div id="view-b" class="view"><h3>Tab B Content</h3><p>This is tab B. JavaScript onclick handlers are working.</p></div>
+<div id="view-c" class="view"><h3>Tab C Content</h3><p>This is tab C. Everything is functional.</p></div>
+<script>
+function show(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  document.getElementById('status').textContent = 'Clicked: ' + id + ' at ' + new Date().toLocaleTimeString();
+}
+document.getElementById('status').textContent = 'JS loaded OK at ' + new Date().toLocaleTimeString();
+</script>
+</body>
+</html>
