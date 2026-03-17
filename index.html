@@ -5796,9 +5796,63 @@ initSLATimes();
 
 var _editMode = false;
 var _editDebounce = {};
+var _eidCounter = 10000; // start high to avoid collisions with existing data-eid values
+
+// Comprehensive selector list covering ALL text-bearing leaf elements across every view
+var EDIT_SELECTORS = [
+  // Process view
+  '.sdp-title','.pfb-label','.ps-title','.ps-owner','.ps-time',
+  '.proc-tab',
+  // Onboarding view
+  '.ob-phase-title','.ob-phase-sub','.ob-task-title','.ob-task-desc','.ob-task-owner',
+  // SOPs view
+  '.stitle','.sdesc','.ch .chl',
+  // SLA view
+  '.kpi-htitle','.kpi-hsub','.kpi-metric','.kpi-target','.kpi-wt',
+  '.km','td:not(:has(*))',
+  // Escalation / Tools views
+  '.esc-role','.esc-who','.esc-how','.esc-when','.esc-note',
+  '.tool-name','.tool-desc','.tool-plan','.tool-note',
+  // Shared across views
+  '.ik','.iv','.iv2','.tb','.ct','.cs',
+  // Quick reference cards
+  '.kpi-hsub',
+  // Dashboard cards
+  '.ov-title','.ov-desc',
+  // Catch-all: any div/span/td/th/p/li with only text content (no block children)
+  '.cb'
+];
+
+function applyEditTags() {
+  EDIT_SELECTORS.forEach(function(sel) {
+    try {
+      document.querySelectorAll(sel).forEach(function(el) {
+        if (!el.hasAttribute('data-eid') && el.textContent.trim().length > 0) {
+          el.setAttribute('data-ed','');
+          el.setAttribute('data-eid','ei-' + (_eidCounter++));
+        }
+      });
+    } catch(e){}
+  });
+  // Attach blur/input listeners to newly tagged elements
+  document.querySelectorAll('[data-ed][data-eid]:not([data-edit-bound])').forEach(function(el) {
+    el.setAttribute('data-edit-bound','1');
+    el.addEventListener('input', function() {
+      var eid = el.getAttribute('data-eid');
+      clearTimeout(_editDebounce[eid]);
+      _editDebounce[eid] = setTimeout(function() { persistEdit(eid, el.innerHTML); }, 600);
+    });
+    el.addEventListener('blur', function() {
+      var eid = el.getAttribute('data-eid');
+      persistEdit(eid, el.innerHTML);
+    });
+  });
+}
 
 function toggleEditMode() {
   _editMode = !_editMode;
+  // Re-scan DOM every time we enter edit mode (handles dynamically shown views)
+  if (_editMode) applyEditTags();
   document.body.classList.toggle('edit-mode', _editMode);
   var btn = document.getElementById('edit-mode-btn');
   if (btn) {
@@ -5806,30 +5860,12 @@ function toggleEditMode() {
     btn.innerHTML = _editMode
       ? '<span class="em-dot"></span> ✓ Editing'
       : '<span class="em-dot"></span> Edit';
-    btn.title = _editMode ? 'Click to stop editing' : 'Click to edit any text';
+    btn.title = _editMode ? 'Click to stop editing' : 'Click to edit any text in the app';
   }
-  // Enable/disable contenteditable on all tagged elements
   document.querySelectorAll('[data-ed][data-eid]').forEach(function(el) {
-    el.contentEditable = _editMode ? 'true' : 'false';
-    if (!_editMode) el.removeAttribute('contenteditable');
+    if (_editMode) { el.contentEditable = 'true'; }
+    else { el.removeAttribute('contenteditable'); }
   });
-  if (_editMode) {
-    // Attach save handlers to all editable elements
-    document.querySelectorAll('[data-ed][data-eid]').forEach(function(el) {
-      if (!el._editBound) {
-        el._editBound = true;
-        el.addEventListener('input', function() {
-          var eid = el.getAttribute('data-eid');
-          clearTimeout(_editDebounce[eid]);
-          _editDebounce[eid] = setTimeout(function() { persistEdit(eid, el.innerHTML); }, 600);
-        });
-        el.addEventListener('blur', function() {
-          var eid = el.getAttribute('data-eid');
-          persistEdit(eid, el.innerHTML);
-        });
-      }
-    });
-  }
 }
 
 function persistEdit(eid, html) {
@@ -5864,34 +5900,28 @@ function resetAllEdits() {
   location.reload();
 }
 
-// ── KPI TARGET & WEIGHT LIVE UPDATE FIX ──
-// Patch saveKpiEdits to also re-render the KPI scorecard after saving
+// Patch saveKpiEdits to also re-render the KPI scorecard
 (function() {
   if (typeof saveKpiEdits !== 'function') return;
   var _origSave = saveKpiEdits;
   saveKpiEdits = function() {
     _origSave();
-    // After saving, update all .kpi-target and .kpi-wt spans in the scorecard
-    // by reading from the admin inputs directly
     document.querySelectorAll('#admin-kpi input[id^="kt-"]').forEach(function(inp) {
-      // inp.id format: kt-{role}-{si}-{ki}
       var parts = inp.id.replace('kt-','').split('-');
       if (parts.length < 3) return;
       var role = parts[0], si = parts[1], ki = parts[2];
-      // Find matching kpi-target in the scorecard
-      var selector = '#kpi-' + role + ' .kpi-section:nth-child(' + (parseInt(si)+1) + ') .kpi-item:nth-child(' + (parseInt(ki)+1) + ') .kpi-target';
-      var el = document.querySelector(selector);
+      var sel = '#kpi-' + role + ' .kpi-section:nth-child(' + (parseInt(si)+1) + ') .kpi-item:nth-child(' + (parseInt(ki)+1) + ') .kpi-target';
+      var el = document.querySelector(sel);
       if (el) el.textContent = inp.value;
     });
     document.querySelectorAll('#admin-kpi input[id^="kw-"]').forEach(function(inp) {
       var parts = inp.id.replace('kw-','').split('-');
       if (parts.length < 3) return;
       var role = parts[0], si = parts[1], ki = parts[2];
-      var selector = '#kpi-' + role + ' .kpi-section:nth-child(' + (parseInt(si)+1) + ') .kpi-item:nth-child(' + (parseInt(ki)+1) + ') .kpi-wt';
-      var el = document.querySelector(selector);
+      var sel = '#kpi-' + role + ' .kpi-section:nth-child(' + (parseInt(si)+1) + ') .kpi-item:nth-child(' + (parseInt(ki)+1) + ') .kpi-wt';
+      var el = document.querySelector(sel);
       if (el) el.textContent = inp.value + '%';
     });
-    // Also re-run renderKPI to ensure scores recalculate
     if (typeof renderKPI === 'function') {
       var activeTab = document.querySelector('#view-kpi .rtab.active');
       if (activeTab) activeTab.click();
@@ -5901,7 +5931,28 @@ function resetAllEdits() {
   };
 })();
 
-// Load saved edits on startup
+// Patch sv() navigation to re-apply edit tags when switching views
+(function() {
+  if (typeof sv !== 'function') return;
+  var _origSv = sv;
+  sv = function(id, btn) {
+    _origSv(id, btn);
+    // After view switch, tag new elements and apply saved edits to this view
+    setTimeout(function() {
+      applyEditTags();
+      loadEdits();
+      // If edit mode is on, make newly tagged elements editable
+      if (_editMode) {
+        document.querySelectorAll('[data-ed][data-eid]:not([contenteditable])').forEach(function(el) {
+          el.contentEditable = 'true';
+        });
+      }
+    }, 100);
+  };
+})();
+
+// Initial tag pass + load saved edits
+applyEditTags();
 loadEdits();
 
 </script>
