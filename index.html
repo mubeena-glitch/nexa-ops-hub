@@ -517,6 +517,17 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--b
 .kpi-edit-input{font-family:'Poppins',sans-serif;font-size:12px;padding:5px 8px;border:1.5px solid var(--pl);border-radius:6px;background:var(--px);color:var(--blk);width:100%}
 .kpi-edit-weight{font-size:11px;background:var(--pl);color:var(--p);padding:3px 7px;border-radius:4px;font-weight:700;text-align:center}
 
+
+/* ── GLOBAL EDIT MODE ── */
+.edit-mode-btn{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:var(--rs);border:1.5px solid var(--p);background:transparent;color:var(--p);font-size:12px;font-weight:600;cursor:pointer;transition:all var(--tr);font-family:'Poppins',sans-serif;}
+.edit-mode-btn:hover,.edit-mode-btn.active{background:var(--p);color:#fff;}
+.edit-mode-btn.active{box-shadow:0 0 0 3px var(--pl);}
+.edit-mode-btn .em-dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;}
+body.edit-mode [data-ed]:hover{outline:2px dashed var(--p);outline-offset:2px;border-radius:3px;cursor:text;}
+body.edit-mode [data-ed][contenteditable=true]:focus{outline:2px solid var(--p);outline-offset:2px;border-radius:3px;background:var(--pl);padding:1px 3px;}
+.edit-saved-toast{position:fixed;bottom:20px;right:20px;background:var(--grn);color:#fff;padding:8px 18px;border-radius:var(--rs);font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;}
+.edit-saved-toast.show{opacity:1;}
+.kpi-target[data-eid]:hover,.kpi-wt[data-eid]:hover{outline:2px dashed var(--p);outline-offset:2px;border-radius:3px;cursor:text;}
 </style>
 </head>
 <body>
@@ -602,11 +613,15 @@ Tools & Subscriptions
 <div class="sb-bottom-txt">NEXA Web Team · Operations Hub<br>Last updated: March 2026 · v2.0</div>
 </div>
 </aside>
+<div class="edit-saved-toast" id="edit-toast">✅ Saved</div>
 <main class="main">
 <div class="topbar">
 <div class="tb-title" id="ttl">Dashboard</div>
 <div class="tb-badge" id="tbadge">Overview</div>
 <div class="tb-right">
+<button class="edit-mode-btn" id="edit-mode-btn" onclick="toggleEditMode()" title="Toggle Edit Mode">
+<span class="em-dot"></span> Edit
+</button>
 <div class="tb-date" id="cur-date"></div>
 </div>
 </div>
@@ -1259,11 +1274,11 @@ Tools & Subscriptions
 </div>
 <div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">SLA Quick Reference</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
-<div class="ir"><span class="ik">Homepage concept (2 directions)</span><span class="iv"><span class="tb">≤ 8 working hours</span> after brief</span></div>
-<div class="ir"><span class="ik">Inner page (per page)</span><span class="iv"><span class="tb">≤ 4 hours</span> per page</span></div>
-<div class="ir"><span class="ik">Revision round</span><span class="iv"><span class="tb">≤ 1 business day</span></span></div>
-<div class="ir"><span class="ik">Design QA corrections</span><span class="iv"><span class="tb">≤ 3 hours</span></span></div>
-<div class="ir"><span class="ik">Handover file prep</span><span class="iv"><span class="tb">≤ 2 hours</span> after approval</span></div>
+<div class="ir"><span class="ik">Homepage concept (2 directions)</span><span class="iv"><span class="tb" data-ed data-eid="el-302">≤ 8 working hours</span> after brief</span></div>
+<div class="ir"><span class="ik">Inner page (per page)</span><span class="iv"><span class="tb" data-ed data-eid="el-303">≤ 4 hours</span> per page</span></div>
+<div class="ir"><span class="ik">Revision round</span><span class="iv"><span class="tb" data-ed data-eid="el-304">≤ 1 business day</span></span></div>
+<div class="ir"><span class="ik">Design QA corrections</span><span class="iv"><span class="tb" data-ed data-eid="el-305">≤ 3 hours</span></span></div>
+<div class="ir"><span class="ik">Handover file prep</span><span class="iv"><span class="tb" data-ed data-eid="el-306">≤ 2 hours</span> after approval</span></div>
 </div>
 </div>
 </div>
@@ -1288,21 +1303,21 @@ Tools & Subscriptions
 <div class="gc2">
 <div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Performance Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
-<div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb">≥ 90</span> on all new builds</span></div>
-<div class="ir"><span class="ik">PageSpeed mobile</span><span class="iv"><span class="tb">≥ 75</span> on all new builds</span></div>
-<div class="ir"><span class="ik">Page load time</span><span class="iv"><span class="tb">≤ 3 seconds</span> average</span></div>
-<div class="ir"><span class="ik">Core Web Vitals</span><span class="iv"><span class="tb">≥ 90%</span> of pages in Good range</span></div>
-<div class="ir"><span class="ik">Site uptime</span><span class="iv"><span class="tb">≥ 99%</span> per deployed site per month</span></div>
-<div class="ir"><span class="ik">Bugs per feature</span><span class="iv"><span class="tb">≤ 2</span> in QA or production</span></div>
+<div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb" data-ed data-eid="el-307">≥ 90</span> on all new builds</span></div>
+<div class="ir"><span class="ik">PageSpeed mobile</span><span class="iv"><span class="tb" data-ed data-eid="el-308">≥ 75</span> on all new builds</span></div>
+<div class="ir"><span class="ik">Page load time</span><span class="iv"><span class="tb" data-ed data-eid="el-309">≤ 3 seconds</span> average</span></div>
+<div class="ir"><span class="ik">Core Web Vitals</span><span class="iv"><span class="tb" data-ed data-eid="el-310">≥ 90%</span> of pages in Good range</span></div>
+<div class="ir"><span class="ik">Site uptime</span><span class="iv"><span class="tb" data-ed data-eid="el-311">≥ 99%</span> per deployed site per month</span></div>
+<div class="ir"><span class="ik">Bugs per feature</span><span class="iv"><span class="tb" data-ed data-eid="el-312">≤ 2</span> in QA or production</span></div>
 </div>
 </div>
 <div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">SLA Quick Reference</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
-<div class="ir"><span class="ik">Homepage build (from handoff)</span><span class="iv"><span class="tb">≤ 10 working hours</span></span></div>
-<div class="ir"><span class="ik">Inner page – template-based</span><span class="iv"><span class="tb">≤ 3 hrs</span> per page</span></div>
-<div class="ir"><span class="ik">Inner page – custom layout</span><span class="iv"><span class="tb">≤ 5 hrs</span> per page</span></div>
-<div class="ir"><span class="ik">Bug fix (warranty)</span><span class="iv"><span class="tb">≤ 1 business day</span></span></div>
-<div class="ir"><span class="ik">Emergency hotfix (live down)</span><span class="iv"><span class="tb">≤ 2 hours</span> (30 min response)</span></div>
+<div class="ir"><span class="ik">Homepage build (from handoff)</span><span class="iv"><span class="tb" data-ed data-eid="el-313">≤ 10 working hours</span></span></div>
+<div class="ir"><span class="ik">Inner page – template-based</span><span class="iv"><span class="tb" data-ed data-eid="el-314">≤ 3 hrs</span> per page</span></div>
+<div class="ir"><span class="ik">Inner page – custom layout</span><span class="iv"><span class="tb" data-ed data-eid="el-315">≤ 5 hrs</span> per page</span></div>
+<div class="ir"><span class="ik">Bug fix (warranty)</span><span class="iv"><span class="tb" data-ed data-eid="el-316">≤ 1 business day</span></span></div>
+<div class="ir"><span class="ik">Emergency hotfix (live down)</span><span class="iv"><span class="tb" data-ed data-eid="el-317">≤ 2 hours</span> (30 min response)</span></div>
 </div>
 </div>
 </div>
@@ -1345,11 +1360,11 @@ Tools & Subscriptions
 </div>
 <div class="card"><div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Integration Quality Standards</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
-<div class="ir"><span class="ik">Form test requirement</span><span class="iv"><span class="tb">100%</span> — every form submission tested before staging shared with client</span></div>
-<div class="ir"><span class="ik">Tracking verification</span><span class="iv"><span class="tb">100%</span> — all events verified in GTM Preview or GA4 DebugView before go-live</span></div>
+<div class="ir"><span class="ik">Form test requirement</span><span class="iv"><span class="tb" data-ed data-eid="el-318">100%</span> — every form submission tested before staging shared with client</span></div>
+<div class="ir"><span class="ik">Tracking verification</span><span class="iv"><span class="tb" data-ed data-eid="el-319">100%</span> — all events verified in GTM Preview or GA4 DebugView before go-live</span></div>
 <div class="ir"><span class="ik">CRM data accuracy</span><span class="iv">All properties mapped correctly. Test lead must appear in correct list/pipeline with correct data.</span></div>
 <div class="ir"><span class="ik">Zero production failures</span><span class="iv">No integration should fail on the live environment. If it does, escalate to PM within 30 minutes.</span></div>
-<div class="ir"><span class="ik">Automation adoption target</span><span class="iv"><span class="tb">≥ 30%</span> of integration tasks should use automation tools (Zapier, n8n, HubSpot workflows)</span></div>
+<div class="ir"><span class="ik">Automation adoption target</span><span class="iv"><span class="tb" data-ed data-eid="el-320">≥ 30%</span> of integration tasks should use automation tools (Zapier, n8n, HubSpot workflows)</span></div>
 </div>
 </div>
 </div>
@@ -1416,11 +1431,11 @@ Tools & Subscriptions
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Design SLAs — Quick Reference</div><div class="cs">Linked to Designer KPI targets</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Task</th><th>Response Time</th><th>Delivery Target</th><th>KPI Link</th></tr></thead><tbody>
-<tr><td class="km">Homepage concept (2 directions)</td><td>≤ 4 hrs after brief</td><td><span class="tb">≤ 8 working hours</span></td><td><span class="wp">First draft speed KPI</span></td></tr>
-<tr><td class="km">Inner page design (per page)</td><td>—</td><td><span class="tb">≤ 4 hrs per page</span></td><td><span class="wp">On-time delivery KPI</span></td></tr>
-<tr><td class="km">Client revision round</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ 1 business day</span></td><td><span class="wp">Revision rounds KPI</span></td></tr>
-<tr><td class="km">Post-QA corrections</td><td>—</td><td><span class="tb">≤ 3 hours</span></td><td><span class="wp">Internal QA compliance KPI</span></td></tr>
-<tr><td class="km">Handover file preparation</td><td>—</td><td><span class="tb">≤ 2 hrs after approval</span></td><td><span class="wp">Handoff quality KPI</span></td></tr>
+<tr><td class="km">Homepage concept (2 directions)</td><td>≤ 4 hrs after brief</td><td><span class="tb" data-ed data-eid="el-321">≤ 8 working hours</span></td><td><span class="wp">First draft speed KPI</span></td></tr>
+<tr><td class="km">Inner page design (per page)</td><td>—</td><td><span class="tb" data-ed data-eid="el-322">≤ 4 hrs per page</span></td><td><span class="wp">On-time delivery KPI</span></td></tr>
+<tr><td class="km">Client revision round</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb" data-ed data-eid="el-323">≤ 1 business day</span></td><td><span class="wp">Revision rounds KPI</span></td></tr>
+<tr><td class="km">Post-QA corrections</td><td>—</td><td><span class="tb" data-ed data-eid="el-324">≤ 3 hours</span></td><td><span class="wp">Internal QA compliance KPI</span></td></tr>
+<tr><td class="km">Handover file preparation</td><td>—</td><td><span class="tb" data-ed data-eid="el-325">≤ 2 hrs after approval</span></td><td><span class="wp">Handoff quality KPI</span></td></tr>
 </tbody></table>
 </div>
 </div>
@@ -1478,14 +1493,14 @@ Tools & Subscriptions
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Development SLAs — Quick Reference</div><div class="cs">Linked to Developer KPI targets</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Task</th><th>Delivery Target</th><th>KPI Link</th></tr></thead><tbody>
-<tr><td class="km">Homepage build from handoff</td><td><span class="tb">≤ 10 working hours</span></td><td><span class="wp">First build speed KPI</span></td></tr>
-<tr><td class="km">Inner page — template-based</td><td><span class="tb">≤ 3 hrs/page</span></td><td><span class="wp">On-time delivery KPI</span></td></tr>
-<tr><td class="km">Inner page — custom layout</td><td><span class="tb">≤ 5 hrs/page</span></td><td><span class="wp">On-time delivery KPI</span></td></tr>
-<tr><td class="km">PageSpeed desktop target</td><td><span class="tb">≥ 90</span></td><td><span class="wp">PageSpeed KPI</span></td></tr>
-<tr><td class="km">Page load time</td><td><span class="tb">≤ 3 seconds</span></td><td><span class="wp">Performance KPI</span></td></tr>
-<tr><td class="km">Core Web Vitals</td><td><span class="tb">≥ 90% Good</span></td><td><span class="wp">CWV KPI</span></td></tr>
-<tr><td class="km">Bug fix (warranty)</td><td><span class="tb">≤ 1 business day</span></td><td><span class="wp">Bug rate KPI</span></td></tr>
-<tr><td class="km">Emergency hotfix (site down)</td><td><span class="tb">≤ 2 hours</span></td><td><span class="wp">Uptime KPI</span></td></tr>
+<tr><td class="km">Homepage build from handoff</td><td><span class="tb" data-ed data-eid="el-326">≤ 10 working hours</span></td><td><span class="wp">First build speed KPI</span></td></tr>
+<tr><td class="km">Inner page — template-based</td><td><span class="tb" data-ed data-eid="el-327">≤ 3 hrs/page</span></td><td><span class="wp">On-time delivery KPI</span></td></tr>
+<tr><td class="km">Inner page — custom layout</td><td><span class="tb" data-ed data-eid="el-328">≤ 5 hrs/page</span></td><td><span class="wp">On-time delivery KPI</span></td></tr>
+<tr><td class="km">PageSpeed desktop target</td><td><span class="tb" data-ed data-eid="el-329">≥ 90</span></td><td><span class="wp">PageSpeed KPI</span></td></tr>
+<tr><td class="km">Page load time</td><td><span class="tb" data-ed data-eid="el-330">≤ 3 seconds</span></td><td><span class="wp">Performance KPI</span></td></tr>
+<tr><td class="km">Core Web Vitals</td><td><span class="tb" data-ed data-eid="el-331">≥ 90% Good</span></td><td><span class="wp">CWV KPI</span></td></tr>
+<tr><td class="km">Bug fix (warranty)</td><td><span class="tb" data-ed data-eid="el-332">≤ 1 business day</span></td><td><span class="wp">Bug rate KPI</span></td></tr>
+<tr><td class="km">Emergency hotfix (site down)</td><td><span class="tb" data-ed data-eid="el-333">≤ 2 hours</span></td><td><span class="wp">Uptime KPI</span></td></tr>
 </tbody></table>
 </div>
 </div>
@@ -1544,19 +1559,19 @@ Tools & Subscriptions
 <div class="gc2" style="margin-top:4px">
 <div>
 <div style="font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--p);margin-bottom:10px">Timelines</div>
-<div class="ir"><span class="ik">Template-based</span><span class="iv"><span class="tb">4 working days</span> intake to staging</span></div>
-<div class="ir"><span class="ik">Custom-designed</span><span class="iv"><span class="tb">7 working days</span> intake to staging</span></div>
-<div class="ir"><span class="ik">Rush (Partner approval)</span><span class="iv"><span class="tb">Min 2 days</span> — confirmed in writing</span></div>
-<div class="ir"><span class="ik">Client review period</span><span class="iv"><span class="tb">2 business days</span></span></div>
-<div class="ir"><span class="ik">Revision turnaround</span><span class="iv"><span class="tb">≤ 1 business day</span> per round</span></div>
+<div class="ir"><span class="ik">Template-based</span><span class="iv"><span class="tb" data-ed data-eid="el-334">4 working days</span> intake to staging</span></div>
+<div class="ir"><span class="ik">Custom-designed</span><span class="iv"><span class="tb" data-ed data-eid="el-335">7 working days</span> intake to staging</span></div>
+<div class="ir"><span class="ik">Rush (Partner approval)</span><span class="iv"><span class="tb" data-ed data-eid="el-336">Min 2 days</span> — confirmed in writing</span></div>
+<div class="ir"><span class="ik">Client review period</span><span class="iv"><span class="tb" data-ed data-eid="el-337">2 business days</span></span></div>
+<div class="ir"><span class="ik">Revision turnaround</span><span class="iv"><span class="tb" data-ed data-eid="el-338">≤ 1 business day</span> per round</span></div>
 </div>
 <div>
 <div style="font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--p);margin-bottom:10px">Quality Standards</div>
-<div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb">≥ 90</span></span></div>
-<div class="ir"><span class="ik">Page load time</span><span class="iv"><span class="tb">≤ 3 seconds</span></span></div>
-<div class="ir"><span class="ik">Form test</span><span class="iv"><span class="tb">100%</span> — lead must arrive in CRM before staging shared</span></div>
-<div class="ir"><span class="ik">Tracking verification</span><span class="iv"><span class="tb">100%</span> — all events verified before go-live</span></div>
-<div class="ir"><span class="ik">Responsive</span><span class="iv"><span class="tb">100%</span> — desktop, tablet and mobile tested</span></div>
+<div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb" data-ed data-eid="el-339">≥ 90</span></span></div>
+<div class="ir"><span class="ik">Page load time</span><span class="iv"><span class="tb" data-ed data-eid="el-340">≤ 3 seconds</span></span></div>
+<div class="ir"><span class="ik">Form test</span><span class="iv"><span class="tb" data-ed data-eid="el-341">100%</span> — lead must arrive in CRM before staging shared</span></div>
+<div class="ir"><span class="ik">Tracking verification</span><span class="iv"><span class="tb" data-ed data-eid="el-342">100%</span> — all events verified before go-live</span></div>
+<div class="ir"><span class="ik">Responsive</span><span class="iv"><span class="tb" data-ed data-eid="el-343">100%</span> — desktop, tablet and mobile tested</span></div>
 </div>
 </div>
 </div>
@@ -1642,10 +1657,10 @@ Tools & Subscriptions
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Maintenance SLA — Response &amp; Resolution</div></div></div><div class="chv">▲</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Priority</th><th>Response</th><th>Resolution</th><th>Notification</th></tr></thead><tbody>
-<tr><td><span style="color:var(--red);font-weight:700;font-size:12px">Critical</span><div style="font-size:11px;color:var(--g3)">Site down or broken</div></td><td>≤ 30 min</td><td><span class="tb">≤ 2 hours</span></td><td>PM + Partner immediately</td></tr>
-<tr><td><span style="color:var(--amb);font-weight:700;font-size:12px">High</span><div style="font-size:11px;color:var(--g3)">Key page or form broken</div></td><td>≤ 1 hour</td><td><span class="tb">≤ 4 hours</span></td><td>PM within 1 hour</td></tr>
-<tr><td><span style="color:var(--p);font-weight:700;font-size:12px">Standard</span><div style="font-size:11px;color:var(--g3)">Content update / minor fix</div></td><td>≤ 4 hours</td><td><span class="tb">≤ 1 business day</span></td><td>Normal working hours</td></tr>
-<tr><td><span style="color:var(--g3);font-weight:700;font-size:12px">Low</span><div style="font-size:11px;color:var(--g3)">Cosmetic / non-urgent</div></td><td>≤ 4 hours</td><td><span class="tb">≤ 3 business days</span></td><td>Batched with low-priority work</td></tr>
+<tr><td><span style="color:var(--red);font-weight:700;font-size:12px">Critical</span><div style="font-size:11px;color:var(--g3)">Site down or broken</div></td><td>≤ 30 min</td><td><span class="tb" data-ed data-eid="el-344">≤ 2 hours</span></td><td>PM + Partner immediately</td></tr>
+<tr><td><span style="color:var(--amb);font-weight:700;font-size:12px">High</span><div style="font-size:11px;color:var(--g3)">Key page or form broken</div></td><td>≤ 1 hour</td><td><span class="tb" data-ed data-eid="el-345">≤ 4 hours</span></td><td>PM within 1 hour</td></tr>
+<tr><td><span style="color:var(--p);font-weight:700;font-size:12px">Standard</span><div style="font-size:11px;color:var(--g3)">Content update / minor fix</div></td><td>≤ 4 hours</td><td><span class="tb" data-ed data-eid="el-346">≤ 1 business day</span></td><td>Normal working hours</td></tr>
+<tr><td><span style="color:var(--g3);font-weight:700;font-size:12px">Low</span><div style="font-size:11px;color:var(--g3)">Cosmetic / non-urgent</div></td><td>≤ 4 hours</td><td><span class="tb" data-ed data-eid="el-347">≤ 3 business days</span></td><td>Batched with low-priority work</td></tr>
 </tbody></table>
 </div>
 </div>
@@ -1667,13 +1682,13 @@ Tools & Subscriptions
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">Monthly Maintenance Report</div><div class="cs">Delivered by 5th of each following month</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
 <div style="font-size:12px;color:var(--g2);margin-bottom:12px">Every maintenance client receives a monthly report covering:</div>
-<div class="ir"><span class="ik">Site uptime</span><span class="iv"><span class="tb">≥ 99%</span> target — report actual percentage with incident log if below</span></div>
+<div class="ir"><span class="ik">Site uptime</span><span class="iv"><span class="tb" data-ed data-eid="el-348">≥ 99%</span> target — report actual percentage with incident log if below</span></div>
 <div class="ir"><span class="ik">Tasks completed</span><span class="iv">Summary of all tasks completed this month with dates and brief descriptions</span></div>
 <div class="ir"><span class="ik">Security updates</span><span class="iv">Any security patches or vulnerability fixes applied</span></div>
 <div class="ir"><span class="ik">Plugin / CMS updates</span><span class="iv">All plugin and CMS version updates made this month</span></div>
 <div class="ir"><span class="ik">PageSpeed scores</span><span class="iv">Current desktop and mobile scores — flag if below target</span></div>
 <div class="ir"><span class="ik">Recommendations</span><span class="iv">Any proactive improvements or upcoming renewal notices</span></div>
-<div class="ir"><span class="ik">Renewal reminder</span><span class="iv">AM sends renewal notice <span class="tb">30 days</span> before agreement expiry</span></div>
+<div class="ir"><span class="ik">Renewal reminder</span><span class="iv">AM sends renewal notice <span class="tb" data-ed data-eid="el-349">30 days</span> before agreement expiry</span></div>
 </div>
 </div>
 </div>
@@ -1703,28 +1718,28 @@ Tools & Subscriptions
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">1. Delivery Timeframes</div><div class="cs">Response times and delivery targets — linked to KPIs</div></div></div><div class="chv">▲</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Service / Task</th><th>Response Time</th><th>Delivery Target</th><th>Priority</th><th>KPI Metric</th></tr></thead><tbody>
-<tr><td class="km">Homepage concept (2 full-fidelity directions)</td><td>≤ <span class="et" data-k="des-homepage-brief">4 hrs</span> after brief</td><td><span class="tb">≤ 8 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">First draft speed ≤ 8hrs</span></td></tr>
-<tr><td class="km">Inner page design (per page)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="des-inner-page">4 hrs</span> per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Revision round (client feedback application)</td><td>≤ <span class="et" data-k="des-revision-ack">2 hrs</span> acknowledgement</td><td><span class="tb">≤ <span class="et" data-k="des-revision-complete">1 business day</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Revision rounds ≤ 2</span></td></tr>
-<tr><td class="km">Responsive adaptations (tablet + mobile)</td><td>—</td><td>Included in page estimate</td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Handoff quality ≥ 90%</span></td></tr>
-<tr><td class="km">Landing page design</td><td>≤ <span class="et" data-k="des-landing-brief">2 hrs</span> after brief</td><td><span class="tb">≤ 5 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Design QA corrections (post internal PM review)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="des-qa-fix">3 hours</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Internal QA compliance 100%</span></td></tr>
-<tr><td class="km">Handover file preparation (Figma + assets)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="des-handover">2 hrs</span> after approval</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Handoff quality ≥ 90%</span></td></tr>
-<tr><td class="km">Emergency redesign (Partner-approved)</td><td>≤ <span class="et" data-k="des-emergency-ack">1 hr</span> acknowledgement</td><td>Agreed case-by-case</td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Written Partner approval required</span></td></tr>
+<tr><td class="km">Homepage concept (2 full-fidelity directions)</td><td data-ed data-eid="el-397">≤ <span class="et" data-k="des-homepage-brief">4 hrs</span> after brief</td><td data-ed data-eid="el-398"><span class="tb" data-ed data-eid="el-350">≤ 8 working hours</span></td><td data-ed data-eid="el-399"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-400"><span class="wp">First draft speed ≤ 8hrs</span></td></tr>
+<tr><td class="km">Inner page design (per page)</td><td data-ed data-eid="el-401">—</td><td data-ed data-eid="el-402"><span class="tb" data-ed data-eid="el-351">≤ <span class="et" data-k="des-inner-page">4 hrs</span> per page</span></td><td data-ed data-eid="el-403"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-404"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Revision round (client feedback application)</td><td data-ed data-eid="el-405">≤ <span class="et" data-k="des-revision-ack">2 hrs</span> acknowledgement</td><td data-ed data-eid="el-406"><span class="tb" data-ed data-eid="el-352">≤ <span class="et" data-k="des-revision-complete">1 business day</span></span></td><td data-ed data-eid="el-407"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-408"><span class="wp">Revision rounds ≤ 2</span></td></tr>
+<tr><td class="km">Responsive adaptations (tablet + mobile)</td><td data-ed data-eid="el-409">—</td><td data-ed data-eid="el-410">Included in page estimate</td><td data-ed data-eid="el-411"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-412"><span class="wp">Handoff quality ≥ 90%</span></td></tr>
+<tr><td class="km">Landing page design</td><td data-ed data-eid="el-413">≤ <span class="et" data-k="des-landing-brief">2 hrs</span> after brief</td><td data-ed data-eid="el-414"><span class="tb" data-ed data-eid="el-353">≤ 5 working hours</span></td><td data-ed data-eid="el-415"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-416"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Design QA corrections (post internal PM review)</td><td data-ed data-eid="el-417">—</td><td data-ed data-eid="el-418"><span class="tb" data-ed data-eid="el-354">≤ <span class="et" data-k="des-qa-fix">3 hours</span></span></td><td data-ed data-eid="el-419"><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td data-ed data-eid="el-420"><span class="wp">Internal QA compliance 100%</span></td></tr>
+<tr><td class="km">Handover file preparation (Figma + assets)</td><td data-ed data-eid="el-421">—</td><td data-ed data-eid="el-422"><span class="tb" data-ed data-eid="el-355">≤ <span class="et" data-k="des-handover">2 hrs</span> after approval</span></td><td data-ed data-eid="el-423"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-424"><span class="wp">Handoff quality ≥ 90%</span></td></tr>
+<tr><td class="km">Emergency redesign (Partner-approved)</td><td data-ed data-eid="el-425">≤ <span class="et" data-k="des-emergency-ack">1 hr</span> acknowledgement</td><td data-ed data-eid="el-426">Agreed case-by-case</td><td data-ed data-eid="el-427"><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td data-ed data-eid="el-428"><span class="wp">Written Partner approval required</span></td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="card">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">2. Quality Standards</div><div class="cs">Every standard is a KPI target — failing these affects the quarterly score</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
-<div class="ir"><span class="ik">Design approval rate</span><span class="iv"><span class="tb">≥ 85%</span> approved on first or second client review &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
-<div class="ir"><span class="ik">Revision rounds</span><span class="iv"><span class="tb">≤ 2 rounds</span> per project included in standard scope. Round 3+ = change request raised by PM. &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
-<div class="ir"><span class="ik">Handoff quality</span><span class="iv"><span class="tb">≥ 90%</span> of design files require zero rework by the development team &nbsp;<span class="wp">KPI weight: 7%</span></span></div>
-<div class="ir"><span class="ik">Responsive coverage</span><span class="iv"><span class="tb">100%</span> — desktop (1440px), tablet (768px) and mobile (375px) on every project without exception</span></div>
-<div class="ir"><span class="ik">Internal QA compliance</span><span class="iv"><span class="tb">100%</span> — all designs must pass internal PM review before reaching the client &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
-<div class="ir"><span class="ik">Usability score</span><span class="iv"><span class="tb">≥ 80%</span> on usability assessment for all final designs &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
-<div class="ir"><span class="ik">CSAT target</span><span class="iv"><span class="tb">≥ 4.5 / 5</span> on all client feedback forms linked to design work &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
-<div class="ir"><span class="ik">AI tool usage</span><span class="iv"><span class="tb">≥ 30%</span> of projects must use AI tools in the design workflow (Figma AI, Midjourney or equivalent) &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
+<div class="ir"><span class="ik">Design approval rate</span><span class="iv"><span class="tb" data-ed data-eid="el-356">≥ 85%</span> approved on first or second client review &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">Revision rounds</span><span class="iv"><span class="tb" data-ed data-eid="el-357">≤ 2 rounds</span> per project included in standard scope. Round 3+ = change request raised by PM. &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
+<div class="ir"><span class="ik">Handoff quality</span><span class="iv"><span class="tb" data-ed data-eid="el-358">≥ 90%</span> of design files require zero rework by the development team &nbsp;<span class="wp">KPI weight: 7%</span></span></div>
+<div class="ir"><span class="ik">Responsive coverage</span><span class="iv"><span class="tb" data-ed data-eid="el-359">100%</span> — desktop (1440px), tablet (768px) and mobile (375px) on every project without exception</span></div>
+<div class="ir"><span class="ik">Internal QA compliance</span><span class="iv"><span class="tb" data-ed data-eid="el-360">100%</span> — all designs must pass internal PM review before reaching the client &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
+<div class="ir"><span class="ik">Usability score</span><span class="iv"><span class="tb" data-ed data-eid="el-361">≥ 80%</span> on usability assessment for all final designs &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
+<div class="ir"><span class="ik">CSAT target</span><span class="iv"><span class="tb" data-ed data-eid="el-362">≥ 4.5 / 5</span> on all client feedback forms linked to design work &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">AI tool usage</span><span class="iv"><span class="tb" data-ed data-eid="el-363">≥ 30%</span> of projects must use AI tools in the design workflow (Figma AI, Midjourney or equivalent) &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
 </div>
 </div>
 <div class="card">
@@ -1788,33 +1803,33 @@ Tools & Subscriptions
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">1. Delivery Timeframes</div><div class="cs">Response times and delivery targets — linked to KPIs</div></div></div><div class="chv">▲</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Service / Task</th><th>Response Time</th><th>Delivery Target</th><th>Priority</th><th>KPI Metric</th></tr></thead><tbody>
-<tr><td class="km">Homepage build (from approved design handoff)</td><td>≤ <span class="et" data-k="dev-homepage-ack">2 hrs</span> acknowledgement</td><td><span class="tb">≤ 10 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">First homepage build speed</span></td></tr>
-<tr><td class="km">Inner pages — template-based (per page)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="dev-inner-template">3 hrs</span> per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Inner pages — custom layout (per page)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="dev-inner-custom">5 hrs</span> per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Form &amp; CRM integration setup</td><td>—</td><td><span class="tb">≤ 4 hours</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Integration quality 100%</span></td></tr>
-<tr><td class="km">Landing page — template-based</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="dev-landing-template">4 working days</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Landing page — custom design</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="dev-landing-custom">7 working days</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Bug fix (post-launch warranty period)</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="dev-bugfix-complete">1 business day</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Bug rate ≤ 2/feature</span></td></tr>
-<tr><td class="km">Emergency hotfix (live site down)</td><td>≤ 30 mins</td><td><span class="tb">≤ <span class="et" data-k="dev-hotfix-complete">2 hours</span></span></td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Site uptime ≥ 99%</span></td></tr>
-<tr><td class="km">Performance optimisation (existing site)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="dev-perf-complete">1 working day</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">PageSpeed ≥ 90 KPI</span></td></tr>
-<tr><td class="km">Developer QA checklist completion</td><td>—</td><td>Before every PM submission</td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">100% required — no exceptions</span></td></tr>
+<tr><td class="km">Homepage build (from approved design handoff)</td><td data-ed data-eid="el-429">≤ <span class="et" data-k="dev-homepage-ack">2 hrs</span> acknowledgement</td><td data-ed data-eid="el-430"><span class="tb" data-ed data-eid="el-364">≤ 10 working hours</span></td><td data-ed data-eid="el-431"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-432"><span class="wp">First homepage build speed</span></td></tr>
+<tr><td class="km">Inner pages — template-based (per page)</td><td data-ed data-eid="el-433">—</td><td data-ed data-eid="el-434"><span class="tb" data-ed data-eid="el-365">≤ <span class="et" data-k="dev-inner-template">3 hrs</span> per page</span></td><td data-ed data-eid="el-435"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-436"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Inner pages — custom layout (per page)</td><td data-ed data-eid="el-437">—</td><td data-ed data-eid="el-438"><span class="tb" data-ed data-eid="el-366">≤ <span class="et" data-k="dev-inner-custom">5 hrs</span> per page</span></td><td data-ed data-eid="el-439"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-440"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Form &amp; CRM integration setup</td><td data-ed data-eid="el-441">—</td><td data-ed data-eid="el-442"><span class="tb" data-ed data-eid="el-367">≤ 4 hours</span></td><td data-ed data-eid="el-443"><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td data-ed data-eid="el-444"><span class="wp">Integration quality 100%</span></td></tr>
+<tr><td class="km">Landing page — template-based</td><td data-ed data-eid="el-445">≤ 2 hrs</td><td data-ed data-eid="el-446"><span class="tb" data-ed data-eid="el-368">≤ <span class="et" data-k="dev-landing-template">4 working days</span></span></td><td data-ed data-eid="el-447"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-448"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Landing page — custom design</td><td data-ed data-eid="el-449">≤ 2 hrs</td><td data-ed data-eid="el-450"><span class="tb" data-ed data-eid="el-369">≤ <span class="et" data-k="dev-landing-custom">7 working days</span></span></td><td data-ed data-eid="el-451"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-452"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Bug fix (post-launch warranty period)</td><td data-ed data-eid="el-453">≤ 2 hrs</td><td data-ed data-eid="el-454"><span class="tb" data-ed data-eid="el-370">≤ <span class="et" data-k="dev-bugfix-complete">1 business day</span></span></td><td data-ed data-eid="el-455"><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td data-ed data-eid="el-456"><span class="wp">Bug rate ≤ 2/feature</span></td></tr>
+<tr><td class="km">Emergency hotfix (live site down)</td><td data-ed data-eid="el-457">≤ 30 mins</td><td data-ed data-eid="el-458"><span class="tb" data-ed data-eid="el-371">≤ <span class="et" data-k="dev-hotfix-complete">2 hours</span></span></td><td data-ed data-eid="el-459"><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td data-ed data-eid="el-460"><span class="wp">Site uptime ≥ 99%</span></td></tr>
+<tr><td class="km">Performance optimisation (existing site)</td><td data-ed data-eid="el-461">—</td><td data-ed data-eid="el-462"><span class="tb" data-ed data-eid="el-372">≤ <span class="et" data-k="dev-perf-complete">1 working day</span></span></td><td data-ed data-eid="el-463"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-464"><span class="wp">PageSpeed ≥ 90 KPI</span></td></tr>
+<tr><td class="km">Developer QA checklist completion</td><td data-ed data-eid="el-465">—</td><td data-ed data-eid="el-466">Before every PM submission</td><td data-ed data-eid="el-467"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-468"><span class="wp">100% required — no exceptions</span></td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="card">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">2. Quality &amp; Performance Standards</div><div class="cs">Every standard is a KPI target with a weighted score</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
-<div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb">≥ 90</span> on all new builds &nbsp;<span class="wp">KPI weight: 4%</span></span></div>
-<div class="ir"><span class="ik">PageSpeed mobile</span><span class="iv"><span class="tb">≥ 75</span> on all new builds</span></div>
-<div class="ir"><span class="ik">Page load time</span><span class="iv"><span class="tb">≤ 3 seconds</span> average on new builds &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
-<div class="ir"><span class="ik">Core Web Vitals</span><span class="iv"><span class="tb">≥ 90%</span> of pages in "Good" range (LCP, CLS, FID/INP) &nbsp;<span class="wp">KPI weight: 6%</span></span></div>
-<div class="ir"><span class="ik">Code QA compliance</span><span class="iv"><span class="tb">≥ 90%</span> compliance score on internal QA review &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
-<div class="ir"><span class="ik">Bugs per feature</span><span class="iv"><span class="tb">≤ 2 bugs</span> per feature in QA or production &nbsp;<span class="wp">KPI weight: 7%</span></span></div>
-<div class="ir"><span class="ik">Pull request approval rate</span><span class="iv"><span class="tb">≥ 85%</span> approved on first review &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
-<div class="ir"><span class="ik">Site uptime</span><span class="iv"><span class="tb">≥ 99%</span> per deployed site per month &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
-<div class="ir"><span class="ik">CSAT target</span><span class="iv"><span class="tb">≥ 4.5 / 5</span> on all client feedback forms &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">PageSpeed desktop</span><span class="iv"><span class="tb" data-ed data-eid="el-373">≥ 90</span> on all new builds &nbsp;<span class="wp">KPI weight: 4%</span></span></div>
+<div class="ir"><span class="ik">PageSpeed mobile</span><span class="iv"><span class="tb" data-ed data-eid="el-374">≥ 75</span> on all new builds</span></div>
+<div class="ir"><span class="ik">Page load time</span><span class="iv"><span class="tb" data-ed data-eid="el-375">≤ 3 seconds</span> average on new builds &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
+<div class="ir"><span class="ik">Core Web Vitals</span><span class="iv"><span class="tb" data-ed data-eid="el-376">≥ 90%</span> of pages in "Good" range (LCP, CLS, FID/INP) &nbsp;<span class="wp">KPI weight: 6%</span></span></div>
+<div class="ir"><span class="ik">Code QA compliance</span><span class="iv"><span class="tb" data-ed data-eid="el-377">≥ 90%</span> compliance score on internal QA review &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
+<div class="ir"><span class="ik">Bugs per feature</span><span class="iv"><span class="tb" data-ed data-eid="el-378">≤ 2 bugs</span> per feature in QA or production &nbsp;<span class="wp">KPI weight: 7%</span></span></div>
+<div class="ir"><span class="ik">Pull request approval rate</span><span class="iv"><span class="tb" data-ed data-eid="el-379">≥ 85%</span> approved on first review &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
+<div class="ir"><span class="ik">Site uptime</span><span class="iv"><span class="tb" data-ed data-eid="el-380">≥ 99%</span> per deployed site per month &nbsp;<span class="wp">KPI weight: 5%</span></span></div>
+<div class="ir"><span class="ik">CSAT target</span><span class="iv"><span class="tb" data-ed data-eid="el-381">≥ 4.5 / 5</span> on all client feedback forms &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
 <div class="ir"><span class="ik">Warranty period</span><span class="iv">1 calendar month post-launch — bug fixes only. New features require a change request.</span></div>
-<div class="ir"><span class="ik">AI tool usage</span><span class="iv"><span class="tb">≥ 50%</span> of development tasks must use AI tools &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
+<div class="ir"><span class="ik">AI tool usage</span><span class="iv"><span class="tb" data-ed data-eid="el-382">≥ 50%</span> of development tasks must use AI tools &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
 </div>
 </div>
 <div class="card">
@@ -1875,27 +1890,27 @@ Tools & Subscriptions
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">1. Delivery Timeframes</div><div class="cs">Linked to KPI targets</div></div></div><div class="chv">▲</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Service / Task</th><th>Response Time</th><th>Delivery Target</th><th>Priority</th><th>KPI Metric</th></tr></thead><tbody>
-<tr><td class="km">Form &amp; CRM integration setup</td><td>—</td><td><span class="tb">≤ 4 hours</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">HubSpot workflow build (standard)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ <span class="et" data-k="int-workflow-std">1 working day</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">HubSpot workflow build (complex multi-step)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ <span class="et" data-k="int-workflow-complex">2 working days</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">GTM / tracking setup (per site)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="int-gtm-setup">3 hours</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Tracking verification 100%</span></td></tr>
-<tr><td class="km">API integration (scoped)</td><td>≤ 2 hrs acknowledgement</td><td>Per scoped estimate</td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Zero production failures</span></td></tr>
-<tr><td class="km">Integration fix (post-go-live bug)</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="int-fix-complete">1 business day</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Bug rate ≤ 5%</span></td></tr>
-<tr><td class="km">Critical integration failure (live)</td><td>≤ 30 mins</td><td><span class="tb">≤ <span class="et" data-k="int-critical-complete">2 hours</span></span></td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Zero production failures KPI</span></td></tr>
+<tr><td class="km">Form &amp; CRM integration setup</td><td data-ed data-eid="el-469">—</td><td data-ed data-eid="el-470"><span class="tb" data-ed data-eid="el-383">≤ 4 hours</span></td><td data-ed data-eid="el-471"><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td data-ed data-eid="el-472"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">HubSpot workflow build (standard)</td><td data-ed data-eid="el-473">≤ 2 hrs acknowledgement</td><td data-ed data-eid="el-474"><span class="tb" data-ed data-eid="el-384">≤ <span class="et" data-k="int-workflow-std">1 working day</span></span></td><td data-ed data-eid="el-475"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-476"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">HubSpot workflow build (complex multi-step)</td><td data-ed data-eid="el-477">≤ 2 hrs acknowledgement</td><td data-ed data-eid="el-478"><span class="tb" data-ed data-eid="el-385">≤ <span class="et" data-k="int-workflow-complex">2 working days</span></span></td><td data-ed data-eid="el-479"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-480"><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">GTM / tracking setup (per site)</td><td data-ed data-eid="el-481">—</td><td data-ed data-eid="el-482"><span class="tb" data-ed data-eid="el-386">≤ <span class="et" data-k="int-gtm-setup">3 hours</span></span></td><td data-ed data-eid="el-483"><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td data-ed data-eid="el-484"><span class="wp">Tracking verification 100%</span></td></tr>
+<tr><td class="km">API integration (scoped)</td><td data-ed data-eid="el-485">≤ 2 hrs acknowledgement</td><td data-ed data-eid="el-486">Per scoped estimate</td><td data-ed data-eid="el-487"><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td data-ed data-eid="el-488"><span class="wp">Zero production failures</span></td></tr>
+<tr><td class="km">Integration fix (post-go-live bug)</td><td data-ed data-eid="el-489">≤ 2 hrs</td><td data-ed data-eid="el-490"><span class="tb" data-ed data-eid="el-387">≤ <span class="et" data-k="int-fix-complete">1 business day</span></span></td><td data-ed data-eid="el-491"><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td data-ed data-eid="el-492"><span class="wp">Bug rate ≤ 5%</span></td></tr>
+<tr><td class="km">Critical integration failure (live)</td><td data-ed data-eid="el-493">≤ 30 mins</td><td data-ed data-eid="el-494"><span class="tb" data-ed data-eid="el-388">≤ <span class="et" data-k="int-critical-complete">2 hours</span></span></td><td data-ed data-eid="el-495"><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td data-ed data-eid="el-496"><span class="wp">Zero production failures KPI</span></td></tr>
 </tbody></table>
 </div>
 </div>
 <div class="card">
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">2. Quality Standards</div><div class="cs">Every standard is a KPI target</div></div></div><div class="chv">▼</div></div>
 <div class="cb">
-<div class="ir"><span class="ik">Form test requirement</span><span class="iv"><span class="tb">100%</span> — every form submission tested before staging is shared with client &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
-<div class="ir"><span class="ik">Tracking verification</span><span class="iv"><span class="tb">100%</span> — all tracking events verified in GTM Preview and GA4 DebugView before go-live &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
-<div class="ir"><span class="ik">Production integration failures</span><span class="iv"><span class="tb">Zero failures</span> on the live environment. If it fails live, escalate to PM within 30 minutes. &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
-<div class="ir"><span class="ik">CRM data accuracy</span><span class="iv"><span class="tb">100%</span> — all fields mapped correctly. Test lead must appear in correct list/pipeline with correct data before marking complete. &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
-<div class="ir"><span class="ik">Automation adoption</span><span class="iv"><span class="tb">≥ 30%</span> of integration tasks use automation tools (n8n, Zapier, HubSpot workflows) &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
+<div class="ir"><span class="ik">Form test requirement</span><span class="iv"><span class="tb" data-ed data-eid="el-389">100%</span> — every form submission tested before staging is shared with client &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">Tracking verification</span><span class="iv"><span class="tb" data-ed data-eid="el-390">100%</span> — all tracking events verified in GTM Preview and GA4 DebugView before go-live &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">Production integration failures</span><span class="iv"><span class="tb" data-ed data-eid="el-391">Zero failures</span> on the live environment. If it fails live, escalate to PM within 30 minutes. &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">CRM data accuracy</span><span class="iv"><span class="tb" data-ed data-eid="el-392">100%</span> — all fields mapped correctly. Test lead must appear in correct list/pipeline with correct data before marking complete. &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">Automation adoption</span><span class="iv"><span class="tb" data-ed data-eid="el-393">≥ 30%</span> of integration tasks use automation tools (n8n, Zapier, HubSpot workflows) &nbsp;<span class="wp">KPI weight: 8%</span></span></div>
 <div class="ir"><span class="ik">Documentation requirement</span><span class="iv">Every integration must be documented — what was built, how it was tested, any client-specific configuration. Saved to project folder.</span></div>
-<div class="ir"><span class="ik">CSAT target</span><span class="iv"><span class="tb">≥ 4.5 / 5</span> on all client feedback forms &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
-<div class="ir"><span class="ik">HubSpot certification</span><span class="iv"><span class="tb">≥ 1 certification</span> per quarter (CMS Developer, Workflow, Ops Hub) &nbsp;<span class="wp">KPI weight: 4%</span></span></div>
+<div class="ir"><span class="ik">CSAT target</span><span class="iv"><span class="tb" data-ed data-eid="el-394">≥ 4.5 / 5</span> on all client feedback forms &nbsp;<span class="wp">KPI weight: 10%</span></span></div>
+<div class="ir"><span class="ik">HubSpot certification</span><span class="iv"><span class="tb" data-ed data-eid="el-395">≥ 1 certification</span> per quarter (CMS Developer, Workflow, Ops Hub) &nbsp;<span class="wp">KPI weight: 4%</span></span></div>
 </div>
 </div>
 <div class="card">
@@ -1951,116 +1966,116 @@ Tools & Subscriptions
     <div class="kpi-hinfo"><div class="kpi-htitle">Web Designer — KPI Scorecard</div><div class="kpi-hsub">Fill in scores 1–5 per metric. Weighted total calculates automatically.</div></div>
     <div class="kpi-htotal"><div class="kpi-score-display" id="kpi-total-des">0</div><div class="kpi-score-label">/ 100 points</div><div class="kpi-band" id="kpi-band-des">Not scored yet</div></div>
   </div><div class="kpi-section-header"><div class="kpi-sh-title">Delivery & Time Management</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 25 pts</div><div class="kpi-sh-score" id="sec-des-0">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">% of tasks / designs delivered on time</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-1">% of tasks / designs delivered on time</div><div class="kpi-target" data-ed data-eid="el-73">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-144">10%</div>
         <select class="kpi-sel" onchange="updateKPI('des',0,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">First homepage concept delivery speed</div><div class="kpi-target">≤ 8 hrs after brief</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-2">First homepage concept delivery speed</div><div class="kpi-target" data-ed data-eid="el-74">≤ 8 hrs after brief</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-145">8%</div>
         <select class="kpi-sel" onchange="updateKPI('des',0,1,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Variance between estimated vs actual hours</div><div class="kpi-target">≤ 15%</div></div>
-        <div class="kpi-wt">7%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-3">Variance between estimated vs actual hours</div><div class="kpi-target" data-ed data-eid="el-75">≤ 15%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-146">7%</div>
         <select class="kpi-sel" onchange="updateKPI('des',0,2,7,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Design Quality & Approvals</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 35 pts</div><div class="kpi-sh-score" id="sec-des-1">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">% designs approved on 1st or 2nd review</div><div class="kpi-target">≥ 85%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-4">% designs approved on 1st or 2nd review</div><div class="kpi-target" data-ed data-eid="el-76">≥ 85%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-147">10%</div>
         <select class="kpi-sel" onchange="updateKPI('des',1,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Average revision rounds per design</div><div class="kpi-target">≤ 2 rounds</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-5">Average revision rounds per design</div><div class="kpi-target" data-ed data-eid="el-77">≤ 2 rounds</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-148">8%</div>
         <select class="kpi-sel" onchange="updateKPI('des',1,1,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Design files requiring no dev rework</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">7%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-6">Design files requiring no dev rework</div><div class="kpi-target" data-ed data-eid="el-78">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-149">7%</div>
         <select class="kpi-sel" onchange="updateKPI('des',1,2,7,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Internal QA compliance score</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-7">Internal QA compliance score</div><div class="kpi-target" data-ed data-eid="el-79">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-150">5%</div>
         <select class="kpi-sel" onchange="updateKPI('des',1,3,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Usability test score on final designs</div><div class="kpi-target">≥ 80%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-8">Usability test score on final designs</div><div class="kpi-target" data-ed data-eid="el-80">≥ 80%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-151">5%</div>
         <select class="kpi-sel" onchange="updateKPI('des',1,4,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Client Satisfaction</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 20 pts</div><div class="kpi-sh-score" id="sec-des-2">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Client satisfaction score (CSAT)</div><div class="kpi-target">≥ 4.5 / 5</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-9">Client satisfaction score (CSAT)</div><div class="kpi-target" data-ed data-eid="el-81">≥ 4.5 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-152">10%</div>
         <select class="kpi-sel" onchange="updateKPI('des',2,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Internal QA score</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-10">Internal QA score</div><div class="kpi-target" data-ed data-eid="el-82">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-153">5%</div>
         <select class="kpi-sel" onchange="updateKPI('des',2,1,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Revision / bug rate across all tasks</div><div class="kpi-target">≤ 5% of tasks</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-11">Revision / bug rate across all tasks</div><div class="kpi-target" data-ed data-eid="el-83">≤ 5% of tasks</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-154">5%</div>
         <select class="kpi-sel" onchange="updateKPI('des',2,2,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">AI & Innovation</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 16 pts</div><div class="kpi-sh-score" id="sec-des-3">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">AI tool usage in design workflow</div><div class="kpi-target">≥ 30% of projects</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-12">AI tool usage in design workflow</div><div class="kpi-target" data-ed data-eid="el-84">≥ 30% of projects</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-155">8%</div>
         <select class="kpi-sel" onchange="updateKPI('des',3,0,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">New reusable templates / components created</div><div class="kpi-target">≥ 5 / quarter</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-13">New reusable templates / components created</div><div class="kpi-target" data-ed data-eid="el-85">≥ 5 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-156">4%</div>
         <select class="kpi-sel" onchange="updateKPI('des',3,1,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Design system contributions</div><div class="kpi-target">≥ 2 / quarter</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-14">Design system contributions</div><div class="kpi-target" data-ed data-eid="el-86">≥ 2 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-157">4%</div>
         <select class="kpi-sel" onchange="updateKPI('des',3,2,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Collaboration, Process & Upskilling</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 16 pts</div><div class="kpi-sh-score" id="sec-des-4">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Portal upload & handover compliance</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-15">Portal upload & handover compliance</div><div class="kpi-target" data-ed data-eid="el-87">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-158">4%</div>
         <select class="kpi-sel" onchange="updateKPI('des',4,0,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Meeting attendance</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-16">Meeting attendance</div><div class="kpi-target" data-ed data-eid="el-88">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-159">3%</div>
         <select class="kpi-sel" onchange="updateKPI('des',4,1,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Cross-team collaboration rating</div><div class="kpi-target">≥ 4 / 5</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-17">Cross-team collaboration rating</div><div class="kpi-target" data-ed data-eid="el-89">≥ 4 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-160">3%</div>
         <select class="kpi-sel" onchange="updateKPI('des',4,2,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Quarterly upskilling / certification</div><div class="kpi-target">1 cert / quarter</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-18">Quarterly upskilling / certification</div><div class="kpi-target" data-ed data-eid="el-90">1 cert / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-161">3%</div>
         <select class="kpi-sel" onchange="updateKPI('des',4,3,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">HubSpot certification</div><div class="kpi-target">≥ 1 / quarter</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-19">HubSpot certification</div><div class="kpi-target" data-ed data-eid="el-91">≥ 1 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-162">3%</div>
         <select class="kpi-sel" onchange="updateKPI('des',4,4,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
@@ -2074,128 +2089,128 @@ Tools & Subscriptions
     <div class="kpi-hinfo"><div class="kpi-htitle">Web Developer — KPI Scorecard</div><div class="kpi-hsub">Fill in scores 1–5 per metric. Weighted total calculates automatically.</div></div>
     <div class="kpi-htotal"><div class="kpi-score-display" id="kpi-total-dev">0</div><div class="kpi-score-label">/ 100 points</div><div class="kpi-band" id="kpi-band-dev">Not scored yet</div></div>
   </div><div class="kpi-section-header"><div class="kpi-sh-title">Delivery & Time Management</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 25 pts</div><div class="kpi-sh-score" id="sec-dev-0">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">% of tasks / builds delivered on time</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-20">% of tasks / builds delivered on time</div><div class="kpi-target" data-ed data-eid="el-92">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-163">10%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',0,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">First homepage build after handoff</div><div class="kpi-target">≤ 10 working hrs</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-21">First homepage build after handoff</div><div class="kpi-target" data-ed data-eid="el-93">≤ 10 working hrs</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-164">8%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',0,1,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Variance between estimated vs actual hours</div><div class="kpi-target">≤ 15%</div></div>
-        <div class="kpi-wt">7%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-22">Variance between estimated vs actual hours</div><div class="kpi-target" data-ed data-eid="el-94">≤ 15%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-165">7%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',0,2,7,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Code Quality & Technical Standards</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 40 pts</div><div class="kpi-sh-score" id="sec-dev-1">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Coding standards compliance (code QA)</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-23">Coding standards compliance (code QA)</div><div class="kpi-target" data-ed data-eid="el-95">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-166">8%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',1,0,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Bugs per feature (QA or production)</div><div class="kpi-target">≤ 2 per feature</div></div>
-        <div class="kpi-wt">7%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-24">Bugs per feature (QA or production)</div><div class="kpi-target" data-ed data-eid="el-96">≤ 2 per feature</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-167">7%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',1,1,7,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Pull request approval rate on 1st review</div><div class="kpi-target">≥ 85%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-25">Pull request approval rate on 1st review</div><div class="kpi-target" data-ed data-eid="el-97">≥ 85%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-168">5%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',1,2,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Pages meeting Core Web Vitals thresholds</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">6%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-26">Pages meeting Core Web Vitals thresholds</div><div class="kpi-target" data-ed data-eid="el-98">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-169">6%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',1,3,6,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Average PageSpeed score (desktop)</div><div class="kpi-target">≥ 90</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-27">Average PageSpeed score (desktop)</div><div class="kpi-target" data-ed data-eid="el-99">≥ 90</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-170">4%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',1,4,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Average page load time</div><div class="kpi-target">≤ 3 seconds</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-28">Average page load time</div><div class="kpi-target" data-ed data-eid="el-100">≤ 3 seconds</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-171">5%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',1,5,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Site uptime for deployed sites</div><div class="kpi-target">≥ 99%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-29">Site uptime for deployed sites</div><div class="kpi-target" data-ed data-eid="el-101">≥ 99%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-172">5%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',1,6,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Client Satisfaction</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 20 pts</div><div class="kpi-sh-score" id="sec-dev-2">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Client satisfaction score (CSAT)</div><div class="kpi-target">≥ 4.5 / 5</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-30">Client satisfaction score (CSAT)</div><div class="kpi-target" data-ed data-eid="el-102">≥ 4.5 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-173">10%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',2,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Internal QA score</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-31">Internal QA score</div><div class="kpi-target" data-ed data-eid="el-103">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-174">5%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',2,1,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Revision / bug rate across all tasks</div><div class="kpi-target">≤ 5% of tasks</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-32">Revision / bug rate across all tasks</div><div class="kpi-target" data-ed data-eid="el-104">≤ 5% of tasks</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-175">5%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',2,2,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">AI, Automation & Innovation</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 17 pts</div><div class="kpi-sh-score" id="sec-dev-3">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">AI tool usage in development workflow</div><div class="kpi-target">≥ 50% of projects</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-33">AI tool usage in development workflow</div><div class="kpi-target" data-ed data-eid="el-105">≥ 50% of projects</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-176">8%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',3,0,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Automation workflow adoption</div><div class="kpi-target">≥ 30% of integrations</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-34">Automation workflow adoption</div><div class="kpi-target" data-ed data-eid="el-106">≥ 30% of integrations</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-177">5%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',3,1,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Reusable components contributed to library</div><div class="kpi-target">≥ 5 / quarter</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-35">Reusable components contributed to library</div><div class="kpi-target" data-ed data-eid="el-107">≥ 5 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-178">4%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',3,2,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Collaboration, Process & Upskilling</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 16 pts</div><div class="kpi-sh-score" id="sec-dev-4">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Portal & handover compliance</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-36">Portal & handover compliance</div><div class="kpi-target" data-ed data-eid="el-108">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-179">4%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',4,0,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Meeting attendance</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-37">Meeting attendance</div><div class="kpi-target" data-ed data-eid="el-109">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-180">3%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',4,1,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Cross-team collaboration rating</div><div class="kpi-target">≥ 4 / 5</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-38">Cross-team collaboration rating</div><div class="kpi-target" data-ed data-eid="el-110">≥ 4 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-181">3%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',4,2,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Quarterly upskilling / certification</div><div class="kpi-target">1 cert / quarter</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-39">Quarterly upskilling / certification</div><div class="kpi-target" data-ed data-eid="el-111">1 cert / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-182">3%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',4,3,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">HubSpot certification</div><div class="kpi-target">≥ 1 / quarter</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-40">HubSpot certification</div><div class="kpi-target" data-ed data-eid="el-112">≥ 1 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-183">3%</div>
         <select class="kpi-sel" onchange="updateKPI('dev',4,4,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
@@ -2209,74 +2224,74 @@ Tools & Subscriptions
     <div class="kpi-hinfo"><div class="kpi-htitle">Project Manager — KPI Scorecard</div><div class="kpi-hsub">Fill in scores 1–5 per metric. Weighted total calculates automatically.</div></div>
     <div class="kpi-htotal"><div class="kpi-score-display" id="kpi-total-pm">0</div><div class="kpi-score-label">/ 100 points</div><div class="kpi-band" id="kpi-band-pm">Not scored yet</div></div>
   </div><div class="kpi-section-header"><div class="kpi-sh-title">Project Delivery</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 45 pts</div><div class="kpi-sh-score" id="sec-pm-0">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">% of projects delivered on or before deadline</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">20%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-41">% of projects delivered on or before deadline</div><div class="kpi-target" data-ed data-eid="el-113">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-184">20%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',0,0,20,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Budget variance (estimated vs actual hours)</div><div class="kpi-target">≤ 15%</div></div>
-        <div class="kpi-wt">15%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-42">Budget variance (estimated vs actual hours)</div><div class="kpi-target" data-ed data-eid="el-114">≤ 15%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-185">15%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',0,1,15,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Client satisfaction score (CSAT)</div><div class="kpi-target">≥ 4.5 / 5</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-43">Client satisfaction score (CSAT)</div><div class="kpi-target" data-ed data-eid="el-115">≥ 4.5 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-186">10%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',0,2,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Operational Governance</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 25 pts</div><div class="kpi-sh-score" id="sec-pm-1">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Forecast task coverage (all tasks logged before work)</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-44">Forecast task coverage (all tasks logged before work)</div><div class="kpi-target" data-ed data-eid="el-116">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-187">10%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',1,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Internal QA gate compliance</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-45">Internal QA gate compliance</div><div class="kpi-target" data-ed data-eid="el-117">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-188">10%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',1,1,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Brief completion check before project setup</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-46">Brief completion check before project setup</div><div class="kpi-target" data-ed data-eid="el-118">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-189">5%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',1,2,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Team Management</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 25 pts</div><div class="kpi-sh-score" id="sec-pm-2">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Team time logging compliance</div><div class="kpi-target">≥ 95% of days</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-47">Team time logging compliance</div><div class="kpi-target" data-ed data-eid="el-119">≥ 95% of days</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-190">10%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',2,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Handover checklist completion rate</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-48">Handover checklist completion rate</div><div class="kpi-target" data-ed data-eid="el-120">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-191">10%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',2,1,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">At-risk project escalation time</div><div class="kpi-target">Within 24 hrs</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-49">At-risk project escalation time</div><div class="kpi-target" data-ed data-eid="el-121">Within 24 hrs</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-192">5%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',2,2,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Communication</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 15 pts</div><div class="kpi-sh-score" id="sec-pm-3">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Weekly client status update delivery</div><div class="kpi-target">100% by Mon 10am</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-50">Weekly client status update delivery</div><div class="kpi-target" data-ed data-eid="el-122">100% by Mon 10am</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-193">5%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',3,0,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Meeting notes distributed after meeting</div><div class="kpi-target">≤ 2 hrs</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-51">Meeting notes distributed after meeting</div><div class="kpi-target" data-ed data-eid="el-123">≤ 2 hrs</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-194">5%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',3,1,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Cross-team collaboration rating</div><div class="kpi-target">≥ 4 / 5</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-52">Cross-team collaboration rating</div><div class="kpi-target" data-ed data-eid="el-124">≥ 4 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-195">5%</div>
         <select class="kpi-sel" onchange="updateKPI('pm',3,2,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
@@ -2290,98 +2305,98 @@ Tools & Subscriptions
     <div class="kpi-hinfo"><div class="kpi-htitle">Integration Specialist — KPI Scorecard</div><div class="kpi-hsub">Fill in scores 1–5 per metric. Weighted total calculates automatically.</div></div>
     <div class="kpi-htotal"><div class="kpi-score-display" id="kpi-total-int">0</div><div class="kpi-score-label">/ 100 points</div><div class="kpi-band" id="kpi-band-int">Not scored yet</div></div>
   </div><div class="kpi-section-header"><div class="kpi-sh-title">Delivery & Time Management</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 25 pts</div><div class="kpi-sh-score" id="sec-int-0">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">% of integration tasks delivered on time</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-53">% of integration tasks delivered on time</div><div class="kpi-target" data-ed data-eid="el-125">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-196">10%</div>
         <select class="kpi-sel" onchange="updateKPI('int',0,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Form & CRM integration setup time</div><div class="kpi-target">≤ 4 hours</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-54">Form & CRM integration setup time</div><div class="kpi-target" data-ed data-eid="el-126">≤ 4 hours</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-197">8%</div>
         <select class="kpi-sel" onchange="updateKPI('int',0,1,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Variance between estimated vs actual hours</div><div class="kpi-target">≤ 15%</div></div>
-        <div class="kpi-wt">7%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-55">Variance between estimated vs actual hours</div><div class="kpi-target" data-ed data-eid="el-127">≤ 15%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-198">7%</div>
         <select class="kpi-sel" onchange="updateKPI('int',0,2,7,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Integration Quality</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 40 pts</div><div class="kpi-sh-score" id="sec-int-1">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Form submissions tested before staging delivery</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-56">Form submissions tested before staging delivery</div><div class="kpi-target" data-ed data-eid="el-128">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-199">10%</div>
         <select class="kpi-sel" onchange="updateKPI('int',1,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Tracking events verified before go-live</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-57">Tracking events verified before go-live</div><div class="kpi-target" data-ed data-eid="el-129">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-200">10%</div>
         <select class="kpi-sel" onchange="updateKPI('int',1,1,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Zero production integration failures</div><div class="kpi-target">0 failures</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-58">Zero production integration failures</div><div class="kpi-target" data-ed data-eid="el-130">0 failures</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-201">10%</div>
         <select class="kpi-sel" onchange="updateKPI('int',1,2,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">CRM data accuracy (correct field mapping)</div><div class="kpi-target">100%</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-59">CRM data accuracy (correct field mapping)</div><div class="kpi-target" data-ed data-eid="el-131">100%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-202">10%</div>
         <select class="kpi-sel" onchange="updateKPI('int',1,3,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Client Satisfaction</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 20 pts</div><div class="kpi-sh-score" id="sec-int-2">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Client satisfaction score (CSAT)</div><div class="kpi-target">≥ 4.5 / 5</div></div>
-        <div class="kpi-wt">10%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-60">Client satisfaction score (CSAT)</div><div class="kpi-target" data-ed data-eid="el-132">≥ 4.5 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-203">10%</div>
         <select class="kpi-sel" onchange="updateKPI('int',2,0,10,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Internal QA score</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-61">Internal QA score</div><div class="kpi-target" data-ed data-eid="el-133">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-204">5%</div>
         <select class="kpi-sel" onchange="updateKPI('int',2,1,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Revision / bug rate on integrations</div><div class="kpi-target">≤ 5%</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-62">Revision / bug rate on integrations</div><div class="kpi-target" data-ed data-eid="el-134">≤ 5%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-205">5%</div>
         <select class="kpi-sel" onchange="updateKPI('int',2,2,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">AI, Automation & Innovation</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 17 pts</div><div class="kpi-sh-score" id="sec-int-3">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Automation tool usage (n8n / Zapier / HubSpot)</div><div class="kpi-target">≥ 30% of tasks</div></div>
-        <div class="kpi-wt">8%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-63">Automation tool usage (n8n / Zapier / HubSpot)</div><div class="kpi-target" data-ed data-eid="el-135">≥ 30% of tasks</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-206">8%</div>
         <select class="kpi-sel" onchange="updateKPI('int',3,0,8,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">AI-assisted workflow building</div><div class="kpi-target">≥ 2 / quarter</div></div>
-        <div class="kpi-wt">5%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-64">AI-assisted workflow building</div><div class="kpi-target" data-ed data-eid="el-136">≥ 2 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-207">5%</div>
         <select class="kpi-sel" onchange="updateKPI('int',3,1,5,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Reusable workflow templates contributed</div><div class="kpi-target">≥ 3 / quarter</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-65">Reusable workflow templates contributed</div><div class="kpi-target" data-ed data-eid="el-137">≥ 3 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-208">4%</div>
         <select class="kpi-sel" onchange="updateKPI('int',3,2,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div></div><div class="kpi-section-header"><div class="kpi-sh-title">Collaboration & Upskilling</div><div style="display:flex;gap:12px;align-items:center"><div class="kpi-sh-pts">Max: 10 pts</div><div class="kpi-sh-score" id="sec-int-4">0 pts</div></div></div><div style="padding:0 4px;margin-bottom:14px"><div class="kpi-row">
-        <div><div class="kpi-metric">Meeting attendance</div><div class="kpi-target">≥ 90%</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-66">Meeting attendance</div><div class="kpi-target" data-ed data-eid="el-138">≥ 90%</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-209">3%</div>
         <select class="kpi-sel" onchange="updateKPI('int',4,0,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">HubSpot certification</div><div class="kpi-target">≥ 1 / quarter</div></div>
-        <div class="kpi-wt">4%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-67">HubSpot certification</div><div class="kpi-target" data-ed data-eid="el-139">≥ 1 / quarter</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-210">4%</div>
         <select class="kpi-sel" onchange="updateKPI('int',4,1,4,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
       </div><div class="kpi-row">
-        <div><div class="kpi-metric">Cross-team collaboration rating</div><div class="kpi-target">≥ 4 / 5</div></div>
-        <div class="kpi-wt">3%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-68">Cross-team collaboration rating</div><div class="kpi-target" data-ed data-eid="el-140">≥ 4 / 5</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-211">3%</div>
         <select class="kpi-sel" onchange="updateKPI('int',4,2,3,this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
@@ -2399,16 +2414,16 @@ Tools & Subscriptions
 <div class="esc-card">
 <div class="esc-title">🔴 Critical — Escalate Immediately</div>
 <div class="esc-sub">These situations require immediate action. Do not wait. Notify PM and Partner simultaneously.</div>
-<div class="esc-row"><div class="esc-icon" style="background:var(--rdb)">🌐</div><div class="esc-content"><div class="esc-who">Live site is down or broken</div><div class="esc-desc">Developer identifies live site failure. Notify PM and Partner simultaneously within 30 minutes. Begin hotfix immediately.</div><div class="esc-sla">⏱ Response: ≤ 30 min · Resolution: ≤ 2 hours</div></div></div>
-<div class="esc-row"><div class="esc-icon" style="background:var(--rdb)">🔒</div><div class="esc-content"><div class="esc-who">Security breach or data exposure</div><div class="esc-desc">Any suspected security issue on a client site. PM escalates to Partner immediately. Do not inform client until Partner confirms messaging.</div><div class="esc-sla">⏱ Escalate within: 15 minutes of discovery</div></div></div>
-<div class="esc-row"><div class="esc-icon" style="background:var(--rdb)">😡</div><div class="esc-content"><div class="esc-who">Client relationship at serious risk</div><div class="esc-desc">Client has threatened to escalate, leave, or has made a formal complaint. PM escalates to Partner within 1 hour.</div><div class="esc-sla">⏱ Escalate within: 1 hour of incident</div></div></div>
+<div class="esc-row"><div class="esc-icon" style="background:var(--rdb)">🌐</div><div class="esc-content"><div class="esc-who" data-ed data-eid="el-223">Live site is down or broken</div><div class="esc-desc">Developer identifies live site failure. Notify PM and Partner simultaneously within 30 minutes. Begin hotfix immediately.</div><div class="esc-sla">⏱ Response: ≤ 30 min · Resolution: ≤ 2 hours</div></div></div>
+<div class="esc-row"><div class="esc-icon" style="background:var(--rdb)">🔒</div><div class="esc-content"><div class="esc-who" data-ed data-eid="el-224">Security breach or data exposure</div><div class="esc-desc">Any suspected security issue on a client site. PM escalates to Partner immediately. Do not inform client until Partner confirms messaging.</div><div class="esc-sla">⏱ Escalate within: 15 minutes of discovery</div></div></div>
+<div class="esc-row"><div class="esc-icon" style="background:var(--rdb)">😡</div><div class="esc-content"><div class="esc-who" data-ed data-eid="el-225">Client relationship at serious risk</div><div class="esc-desc">Client has threatened to escalate, leave, or has made a formal complaint. PM escalates to Partner within 1 hour.</div><div class="esc-sla">⏱ Escalate within: 1 hour of incident</div></div></div>
 </div>
 <div class="esc-card">
 <div class="esc-title">🟠 High — Escalate Within 24 Hours</div>
 <div class="esc-sub">These require PM awareness and a plan. Team member escalates to PM within 24 hours.</div>
-<div class="esc-row"><div class="esc-icon" style="background:var(--amb2)">📅</div><div class="esc-content"><div class="esc-who">Project at risk of missing deadline</div><div class="esc-desc">Designer, Developer or Integration Specialist flags to PM as soon as a deadline is at risk — minimum 4 hours before the deadline, ideally 24 hours.</div><div class="esc-sla">⏱ Flag to PM: ≥ 4 hours before deadline</div></div></div>
-<div class="esc-row"><div class="esc-icon" style="background:var(--amb2)">💰</div><div class="esc-content"><div class="esc-who">Project budget exceeding 80%</div><div class="esc-desc">PM flags to Partner when any project exceeds 80% of budgeted hours with scope still outstanding. Do not wait until 100%.</div><div class="esc-sla">⏱ PM escalates to Partner at 80% burn</div></div></div>
-<div class="esc-row"><div class="esc-icon" style="background:var(--amb2)">📋</div><div class="esc-content"><div class="esc-who">Scope creep or undefined change request</div><div class="esc-desc">Any client request that adds scope, changes deliverables or extends timeline requires a documented change request. PM to AM before any work begins.</div><div class="esc-sla">⏱ Change request raised before work starts</div></div></div>
+<div class="esc-row"><div class="esc-icon" style="background:var(--amb2)">📅</div><div class="esc-content"><div class="esc-who" data-ed data-eid="el-226">Project at risk of missing deadline</div><div class="esc-desc">Designer, Developer or Integration Specialist flags to PM as soon as a deadline is at risk — minimum 4 hours before the deadline, ideally 24 hours.</div><div class="esc-sla">⏱ Flag to PM: ≥ 4 hours before deadline</div></div></div>
+<div class="esc-row"><div class="esc-icon" style="background:var(--amb2)">💰</div><div class="esc-content"><div class="esc-who" data-ed data-eid="el-227">Project budget exceeding 80%</div><div class="esc-desc">PM flags to Partner when any project exceeds 80% of budgeted hours with scope still outstanding. Do not wait until 100%.</div><div class="esc-sla">⏱ PM escalates to Partner at 80% burn</div></div></div>
+<div class="esc-row"><div class="esc-icon" style="background:var(--amb2)">📋</div><div class="esc-content"><div class="esc-who" data-ed data-eid="el-228">Scope creep or undefined change request</div><div class="esc-desc">Any client request that adds scope, changes deliverables or extends timeline requires a documented change request. PM to AM before any work begins.</div><div class="esc-sla">⏱ Change request raised before work starts</div></div></div>
 </div>
 </div>
 <div class="esc-card">
@@ -2448,51 +2463,51 @@ Tools & Subscriptions
 </div>
 <div id="tl-all" class="rp active">
 <div class="tools-grid">
-<div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Forecast</div><div class="tool-cat" style="color:var(--p)">Project Management</div><div class="tool-desc">Primary project management and time tracking tool. All tasks, hours, budgets and project timelines live here.</div><div class="tool-meta"><span class="tool-pill">All Roles</span><span class="tool-pill tool-pill-g">Core Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">💬</div><div class="tool-name">Slack</div><div class="tool-cat" style="color:var(--p)">Communication</div><div class="tool-desc">Primary internal communication platform. All project discussions, file shares and team coordination happen here.</div><div class="tool-meta"><span class="tool-pill">All Roles</span><span class="tool-pill tool-pill-g">Core Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">📁</div><div class="tool-name">Google Workspace</div><div class="tool-cat" style="color:var(--p)">Collaboration</div><div class="tool-desc">Drive, Docs, Sheets and Meet. Used for file storage, project documentation, briefs and internal reporting.</div><div class="tool-meta"><span class="tool-pill">All Roles</span><span class="tool-pill tool-pill-g">Core Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">Figma</div><div class="tool-cat" style="color:#1A6A3F">Design</div><div class="tool-desc">Primary design tool. All design work, component libraries, prototypes and developer handoffs are done in Figma.</div><div class="tool-meta"><span class="tool-pill">Designer</span><span class="tool-pill tool-pill-b">Developer (view)</span></div></div>
-<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name">HubSpot CMS</div><div class="tool-cat" style="color:var(--amb)">Platform</div><div class="tool-desc">Primary website CMS for client builds. All HubSpot website development, template building and content management.</div><div class="tool-meta"><span class="tool-pill">Developer</span><span class="tool-pill">Integration</span></div></div>
-<div class="tool-card"><div class="tool-icon">🔷</div><div class="tool-name">WordPress</div><div class="tool-cat" style="color:var(--blu)">Platform</div><div class="tool-desc">Secondary CMS used for custom website builds where HubSpot is not the platform. Custom theme development only.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Developer</span></div></div>
-<div class="tool-card"><div class="tool-icon">🔀</div><div class="tool-name">Zapier / n8n</div><div class="tool-cat" style="color:var(--amb)">Automation</div><div class="tool-desc">Workflow automation and integration platform. Used for connecting platforms, automating data flows and building client automation workflows.</div><div class="tool-meta"><span class="tool-pill">Integration Specialist</span></div></div>
-<div class="tool-card"><div class="tool-icon">📈</div><div class="tool-name">Google Analytics 4</div><div class="tool-cat" style="color:var(--blu)">Analytics</div><div class="tool-desc">Client website analytics. All new projects require GA4 installation and verification before go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Integration</span><span class="tool-pill">Developer</span></div></div>
-<div class="tool-card"><div class="tool-icon">🏷️</div><div class="tool-name">Google Tag Manager</div><div class="tool-cat" style="color:var(--blu)">Tracking</div><div class="tool-desc">Tag management for all client tracking — GA4, Meta Pixel, LinkedIn Insight Tag, conversion events and custom triggers.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Integration</span></div></div>
-<div class="tool-card"><div class="tool-icon">⚡</div><div class="tool-name">PageSpeed Insights</div><div class="tool-cat" style="color:var(--grn)">Performance</div><div class="tool-desc">Google's performance testing tool. All builds must hit desktop ≥ 90 and mobile ≥ 75 before go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Developer</span><span class="tool-pill">PM (QA)</span></div></div>
-<div class="tool-card"><div class="tool-icon">🤖</div><div class="tool-name">GitHub Copilot / ChatGPT</div><div class="tool-cat" style="color:var(--p)">AI Tools</div><div class="tool-desc">AI coding assistants. Developers are expected to use AI tools on ≥ 50% of tasks. Usage logged quarterly in KPI scorecard.</div><div class="tool-meta"><span class="tool-pill">Developer</span><span class="tool-pill">Integration</span></div></div>
-<div class="tool-card"><div class="tool-icon">✨</div><div class="tool-name">Figma AI / Midjourney</div><div class="tool-cat" style="color:var(--p)">AI Tools</div><div class="tool-desc">AI design tools. Designers must use AI tools on ≥ 30% of projects. Usage logged quarterly in KPI scorecard.</div><div class="tool-meta"><span class="tool-pill">Designer</span></div></div>
+<div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name" data-ed data-eid="el-232">Forecast</div><div class="tool-cat" style="color:var(--p)">Project Management</div><div class="tool-desc" data-ed data-eid="el-262">Primary project management and time tracking tool. All tasks, hours, budgets and project timelines live here.</div><div class="tool-meta"><span class="tool-pill">All Roles</span><span class="tool-pill tool-pill-g">Core Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">💬</div><div class="tool-name" data-ed data-eid="el-233">Slack</div><div class="tool-cat" style="color:var(--p)">Communication</div><div class="tool-desc" data-ed data-eid="el-263">Primary internal communication platform. All project discussions, file shares and team coordination happen here.</div><div class="tool-meta"><span class="tool-pill">All Roles</span><span class="tool-pill tool-pill-g">Core Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">📁</div><div class="tool-name" data-ed data-eid="el-234">Google Workspace</div><div class="tool-cat" style="color:var(--p)">Collaboration</div><div class="tool-desc" data-ed data-eid="el-264">Drive, Docs, Sheets and Meet. Used for file storage, project documentation, briefs and internal reporting.</div><div class="tool-meta"><span class="tool-pill">All Roles</span><span class="tool-pill tool-pill-g">Core Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name" data-ed data-eid="el-235">Figma</div><div class="tool-cat" style="color:#1A6A3F">Design</div><div class="tool-desc" data-ed data-eid="el-265">Primary design tool. All design work, component libraries, prototypes and developer handoffs are done in Figma.</div><div class="tool-meta"><span class="tool-pill">Designer</span><span class="tool-pill tool-pill-b">Developer (view)</span></div></div>
+<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name" data-ed data-eid="el-236">HubSpot CMS</div><div class="tool-cat" style="color:var(--amb)">Platform</div><div class="tool-desc" data-ed data-eid="el-266">Primary website CMS for client builds. All HubSpot website development, template building and content management.</div><div class="tool-meta"><span class="tool-pill">Developer</span><span class="tool-pill">Integration</span></div></div>
+<div class="tool-card"><div class="tool-icon">🔷</div><div class="tool-name" data-ed data-eid="el-237">WordPress</div><div class="tool-cat" style="color:var(--blu)">Platform</div><div class="tool-desc" data-ed data-eid="el-267">Secondary CMS used for custom website builds where HubSpot is not the platform. Custom theme development only.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Developer</span></div></div>
+<div class="tool-card"><div class="tool-icon">🔀</div><div class="tool-name" data-ed data-eid="el-238">Zapier / n8n</div><div class="tool-cat" style="color:var(--amb)">Automation</div><div class="tool-desc" data-ed data-eid="el-268">Workflow automation and integration platform. Used for connecting platforms, automating data flows and building client automation workflows.</div><div class="tool-meta"><span class="tool-pill">Integration Specialist</span></div></div>
+<div class="tool-card"><div class="tool-icon">📈</div><div class="tool-name" data-ed data-eid="el-239">Google Analytics 4</div><div class="tool-cat" style="color:var(--blu)">Analytics</div><div class="tool-desc" data-ed data-eid="el-269">Client website analytics. All new projects require GA4 installation and verification before go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Integration</span><span class="tool-pill">Developer</span></div></div>
+<div class="tool-card"><div class="tool-icon">🏷️</div><div class="tool-name" data-ed data-eid="el-240">Google Tag Manager</div><div class="tool-cat" style="color:var(--blu)">Tracking</div><div class="tool-desc" data-ed data-eid="el-270">Tag management for all client tracking — GA4, Meta Pixel, LinkedIn Insight Tag, conversion events and custom triggers.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Integration</span></div></div>
+<div class="tool-card"><div class="tool-icon">⚡</div><div class="tool-name" data-ed data-eid="el-241">PageSpeed Insights</div><div class="tool-cat" style="color:var(--grn)">Performance</div><div class="tool-desc" data-ed data-eid="el-271">Google's performance testing tool. All builds must hit desktop ≥ 90 and mobile ≥ 75 before go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Developer</span><span class="tool-pill">PM (QA)</span></div></div>
+<div class="tool-card"><div class="tool-icon">🤖</div><div class="tool-name" data-ed data-eid="el-242">GitHub Copilot / ChatGPT</div><div class="tool-cat" style="color:var(--p)">AI Tools</div><div class="tool-desc" data-ed data-eid="el-272">AI coding assistants. Developers are expected to use AI tools on ≥ 50% of tasks. Usage logged quarterly in KPI scorecard.</div><div class="tool-meta"><span class="tool-pill">Developer</span><span class="tool-pill">Integration</span></div></div>
+<div class="tool-card"><div class="tool-icon">✨</div><div class="tool-name" data-ed data-eid="el-243">Figma AI / Midjourney</div><div class="tool-cat" style="color:var(--p)">AI Tools</div><div class="tool-desc" data-ed data-eid="el-273">AI design tools. Designers must use AI tools on ≥ 30% of projects. Usage logged quarterly in KPI scorecard.</div><div class="tool-meta"><span class="tool-pill">Designer</span></div></div>
 </div>
 </div>
 <div id="tl-pm" class="rp">
 <div class="tools-grid">
-<div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Forecast</div><div class="tool-cat" style="color:var(--p)">Project Management</div><div class="tool-desc">Task creation, time tracking, budget monitoring, resource allocation and project reporting.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">💬</div><div class="tool-name">Slack</div><div class="tool-cat" style="color:var(--p)">Communication</div><div class="tool-desc">Team and client communication, project channels, file sharing and daily standup.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">📁</div><div class="tool-name">Google Workspace</div><div class="tool-cat" style="color:var(--p)">Collaboration</div><div class="tool-desc">Project docs, meeting notes, briefs, reporting and file management.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name">HubSpot CRM</div><div class="tool-cat" style="color:var(--amb)">CRM</div><div class="tool-desc">Client records, deal tracking, contact management. PM uses for client communication records.</div><div class="tool-meta"><span class="tool-pill">Read / Write</span></div></div>
+<div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name" data-ed data-eid="el-244">Forecast</div><div class="tool-cat" style="color:var(--p)">Project Management</div><div class="tool-desc" data-ed data-eid="el-274">Task creation, time tracking, budget monitoring, resource allocation and project reporting.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">💬</div><div class="tool-name" data-ed data-eid="el-245">Slack</div><div class="tool-cat" style="color:var(--p)">Communication</div><div class="tool-desc" data-ed data-eid="el-275">Team and client communication, project channels, file sharing and daily standup.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">📁</div><div class="tool-name" data-ed data-eid="el-246">Google Workspace</div><div class="tool-cat" style="color:var(--p)">Collaboration</div><div class="tool-desc" data-ed data-eid="el-276">Project docs, meeting notes, briefs, reporting and file management.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name" data-ed data-eid="el-247">HubSpot CRM</div><div class="tool-cat" style="color:var(--amb)">CRM</div><div class="tool-desc" data-ed data-eid="el-277">Client records, deal tracking, contact management. PM uses for client communication records.</div><div class="tool-meta"><span class="tool-pill">Read / Write</span></div></div>
 </div>
 </div>
 <div id="tl-design" class="rp">
 <div class="tools-grid">
-<div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">Figma</div><div class="tool-cat" style="color:#1A6A3F">Design</div><div class="tool-desc">All design work, component libraries, prototypes and developer handoffs.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">✨</div><div class="tool-name">Figma AI</div><div class="tool-cat" style="color:var(--p)">AI Design</div><div class="tool-desc">AI-assisted design generation, component suggestions and layout ideas. Must be used on ≥ 30% of projects.</div><div class="tool-meta"><span class="tool-pill">Required (≥30%)</span></div></div>
-<div class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Midjourney</div><div class="tool-cat" style="color:var(--p)">AI Image Gen</div><div class="tool-desc">AI image generation for concept exploration, hero imagery and visual direction. Counts toward AI usage target.</div><div class="tool-meta"><span class="tool-pill">AI Target</span></div></div>
+<div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name" data-ed data-eid="el-248">Figma</div><div class="tool-cat" style="color:#1A6A3F">Design</div><div class="tool-desc" data-ed data-eid="el-278">All design work, component libraries, prototypes and developer handoffs.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">✨</div><div class="tool-name" data-ed data-eid="el-249">Figma AI</div><div class="tool-cat" style="color:var(--p)">AI Design</div><div class="tool-desc" data-ed data-eid="el-279">AI-assisted design generation, component suggestions and layout ideas. Must be used on ≥ 30% of projects.</div><div class="tool-meta"><span class="tool-pill">Required (≥30%)</span></div></div>
+<div class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name" data-ed data-eid="el-250">Midjourney</div><div class="tool-cat" style="color:var(--p)">AI Image Gen</div><div class="tool-desc" data-ed data-eid="el-280">AI image generation for concept exploration, hero imagery and visual direction. Counts toward AI usage target.</div><div class="tool-meta"><span class="tool-pill">AI Target</span></div></div>
 </div>
 </div>
 <div id="tl-dev" class="rp">
 <div class="tools-grid">
-<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name">HubSpot CMS</div><div class="tool-cat" style="color:var(--amb)">Platform</div><div class="tool-desc">Primary website platform. HubSpot module development, HubL templating and CMS builds.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Platform</span></div></div>
-<div class="tool-card"><div class="tool-icon">🔷</div><div class="tool-name">WordPress</div><div class="tool-cat" style="color:var(--blu)">Platform</div><div class="tool-desc">Secondary platform. Custom theme development with ACF. No off-the-shelf themes unless explicitly scoped.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Secondary Platform</span></div></div>
-<div class="tool-card"><div class="tool-icon">🐙</div><div class="tool-name">Git / GitHub</div><div class="tool-cat" style="color:var(--blk)">Version Control</div><div class="tool-desc">All custom code version-controlled in Git from day one. No exceptions. PRs reviewed before merging.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory</span></div></div>
-<div class="tool-card"><div class="tool-icon">⚡</div><div class="tool-name">PageSpeed Insights</div><div class="tool-cat" style="color:var(--grn)">Performance</div><div class="tool-desc">Performance testing on every build. Desktop ≥ 90 and mobile ≥ 75 required before go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory QA Step</span></div></div>
-<div class="tool-card"><div class="tool-icon">🤖</div><div class="tool-name">GitHub Copilot</div><div class="tool-cat" style="color:var(--p)">AI Coding</div><div class="tool-desc">AI pair programming. Must be used on ≥ 50% of development tasks. Usage logged quarterly.</div><div class="tool-meta"><span class="tool-pill">Required (≥50%)</span></div></div>
+<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name" data-ed data-eid="el-251">HubSpot CMS</div><div class="tool-cat" style="color:var(--amb)">Platform</div><div class="tool-desc" data-ed data-eid="el-281">Primary website platform. HubSpot module development, HubL templating and CMS builds.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Platform</span></div></div>
+<div class="tool-card"><div class="tool-icon">🔷</div><div class="tool-name" data-ed data-eid="el-252">WordPress</div><div class="tool-cat" style="color:var(--blu)">Platform</div><div class="tool-desc" data-ed data-eid="el-282">Secondary platform. Custom theme development with ACF. No off-the-shelf themes unless explicitly scoped.</div><div class="tool-meta"><span class="tool-pill tool-pill-b">Secondary Platform</span></div></div>
+<div class="tool-card"><div class="tool-icon">🐙</div><div class="tool-name" data-ed data-eid="el-253">Git / GitHub</div><div class="tool-cat" style="color:var(--blk)">Version Control</div><div class="tool-desc" data-ed data-eid="el-283">All custom code version-controlled in Git from day one. No exceptions. PRs reviewed before merging.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory</span></div></div>
+<div class="tool-card"><div class="tool-icon">⚡</div><div class="tool-name" data-ed data-eid="el-254">PageSpeed Insights</div><div class="tool-cat" style="color:var(--grn)">Performance</div><div class="tool-desc" data-ed data-eid="el-284">Performance testing on every build. Desktop ≥ 90 and mobile ≥ 75 required before go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory QA Step</span></div></div>
+<div class="tool-card"><div class="tool-icon">🤖</div><div class="tool-name" data-ed data-eid="el-255">GitHub Copilot</div><div class="tool-cat" style="color:var(--p)">AI Coding</div><div class="tool-desc" data-ed data-eid="el-285">AI pair programming. Must be used on ≥ 50% of development tasks. Usage logged quarterly.</div><div class="tool-meta"><span class="tool-pill">Required (≥50%)</span></div></div>
 </div>
 </div>
 <div id="tl-int" class="rp">
 <div class="tools-grid">
-<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name">HubSpot</div><div class="tool-cat" style="color:var(--amb)">CRM / Automation</div><div class="tool-desc">HubSpot workflows, CRM property setup, lists, lead scoring, form → CRM connections and email automation.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">🔀</div><div class="tool-name">Zapier</div><div class="tool-cat" style="color:var(--amb)">Automation</div><div class="tool-desc">Third-party automation for connecting platforms not natively integrated. Used when n8n is not suitable.</div><div class="tool-meta"><span class="tool-pill">Integration Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">⚙️</div><div class="tool-name">n8n</div><div class="tool-cat" style="color:var(--amb)">Automation</div><div class="tool-desc">Advanced workflow automation. Preferred for complex multi-step automations and custom API integrations.</div><div class="tool-meta"><span class="tool-pill">Integration Tool</span></div></div>
-<div class="tool-card"><div class="tool-icon">🏷️</div><div class="tool-name">Google Tag Manager</div><div class="tool-cat" style="color:var(--blu)">Tracking</div><div class="tool-desc">Container management for all client tracking tags. GTM Preview used for testing before every go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory</span></div></div>
-<div class="tool-card"><div class="tool-icon">📈</div><div class="tool-name">Google Analytics 4</div><div class="tool-cat" style="color:var(--blu)">Analytics</div><div class="tool-desc">GA4 property setup, event configuration, conversion tracking and DebugView testing.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory</span></div></div>
+<div class="tool-card"><div class="tool-icon">🧡</div><div class="tool-name" data-ed data-eid="el-256">HubSpot</div><div class="tool-cat" style="color:var(--amb)">CRM / Automation</div><div class="tool-desc" data-ed data-eid="el-286">HubSpot workflows, CRM property setup, lists, lead scoring, form → CRM connections and email automation.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Primary Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">🔀</div><div class="tool-name" data-ed data-eid="el-257">Zapier</div><div class="tool-cat" style="color:var(--amb)">Automation</div><div class="tool-desc" data-ed data-eid="el-287">Third-party automation for connecting platforms not natively integrated. Used when n8n is not suitable.</div><div class="tool-meta"><span class="tool-pill">Integration Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">⚙️</div><div class="tool-name" data-ed data-eid="el-258">n8n</div><div class="tool-cat" style="color:var(--amb)">Automation</div><div class="tool-desc" data-ed data-eid="el-288">Advanced workflow automation. Preferred for complex multi-step automations and custom API integrations.</div><div class="tool-meta"><span class="tool-pill">Integration Tool</span></div></div>
+<div class="tool-card"><div class="tool-icon">🏷️</div><div class="tool-name" data-ed data-eid="el-259">Google Tag Manager</div><div class="tool-cat" style="color:var(--blu)">Tracking</div><div class="tool-desc" data-ed data-eid="el-289">Container management for all client tracking tags. GTM Preview used for testing before every go-live.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory</span></div></div>
+<div class="tool-card"><div class="tool-icon">📈</div><div class="tool-name" data-ed data-eid="el-260">Google Analytics 4</div><div class="tool-cat" style="color:var(--blu)">Analytics</div><div class="tool-desc" data-ed data-eid="el-290">GA4 property setup, event configuration, conversion tracking and DebugView testing.</div><div class="tool-meta"><span class="tool-pill tool-pill-g">Mandatory</span></div></div>
 </div>
 </div>
 </div>
@@ -3657,6 +3672,7 @@ Tools & Subscriptions
 </div>
 </div>
 <button class="btn btn-p" onclick="saveGeneralSettings()">💾 Save Settings</button>
+<button onclick="resetAllEdits()" style="margin-left:8px;padding:8px 16px;border-radius:var(--rs);border:1.5px solid var(--red);background:transparent;color:var(--red);font-size:13px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;">🗑️ Reset All Custom Edits</button>
 </div>
 </div>
 <div class="admin-card" style="margin-top:14px">
@@ -4526,8 +4542,8 @@ function renderKPI(role){
     sec.kpis.forEach((k,ki)=>{
       const key=`${si}-${ki}`;
       html+=`<div class="kpi-row">
-        <div><div class="kpi-metric">${k.m}</div><div class="kpi-target">${k.t}</div></div>
-        <div class="kpi-wt">${k.w}%</div>
+        <div><div class="kpi-metric" data-ed data-eid="el-69">${k.m}</div><div class="kpi-target" data-ed data-eid="el-141">${k.t}</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-212">${k.w}%</div>
         <select class="kpi-sel" onchange="updateKPI('${role}',${si},${ki},${k.w},this.value)">
           <option value="0">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
         </select>
@@ -4795,7 +4811,7 @@ function renderMrScorecard(member, role, period, existing){
     const stBg = st==='met'?'var(--gnb)':st==='missed'?'var(--rdb)':'var(--px)';
     html += `<tr>
       <td class="km">${m.metric}</td>
-      <td><span class="tb">${m.target}</span></td>
+      <td><span class="tb" data-ed data-eid="el-396">${m.target}</span></td>
       <td><input type="text" id="mrv-${i}" value="${val}" placeholder="e.g. 94%" style="border:1.5px solid var(--pl);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--px);color:var(--blk);width:120px"></td>
       <td><select id="mrs-${i}" onchange="setMetricStatus(this)" style="border:1.5px solid var(--pl);border-radius:6px;padding:4px 8px;font-size:12px;font-family:'Poppins',system-ui,-apple-system,sans-serif;background:${stBg};color:${stColor};border-color:${stColor==='var(--g3)'?'var(--pl)':stColor}">
         <option value="">— Select —</option>
@@ -4829,7 +4845,7 @@ function renderMrScorecard(member, role, period, existing){
         if(!conductScores[si]) conductScores[si] = {};
         conductScores[si][ii] = savedV;
       }
-      html += `<div class="kpi-row"><div class="kpi-metric">${item.s}</div>
+      html += `<div class="kpi-row"><div class="kpi-metric" data-ed data-eid="el-70">${item.s}</div>
         <select class="kpi-sel" onchange="updateMrConduct('${role}',${si},${ii},this.value)">
           <option value="0">—</option>
           ${[1,2,3,4,5].map(n=>`<option value="${n}" ${savedV==n?'selected':''}>${n}</option>`).join('')}
@@ -5041,8 +5057,8 @@ function renderArScorecard(member, role, period, existing){
         if(!annualScores[role]) annualScores[role] = {};
         annualScores[role][si+'-'+ki] = {w:k.w, v:savedV};
       }
-      html += `<div class="kpi-row"><div><div class="kpi-metric">${k.m}</div><div class="kpi-target">${k.t}</div></div>
-        <div class="kpi-wt">${k.w}%</div>
+      html += `<div class="kpi-row"><div><div class="kpi-metric" data-ed data-eid="el-71">${k.m}</div><div class="kpi-target" data-ed data-eid="el-142">${k.t}</div></div>
+        <div class="kpi-wt" data-ed data-eid="el-213">${k.w}%</div>
         <select class="kpi-sel" onchange="updateAnnual('${role}',${si},${ki},${k.w},this.value)">
           <option value="0">—</option>
           ${[1,2,3,4,5].map(n=>`<option value="${n}" ${savedV==n?'selected':''}>${n}</option>`).join('')}
@@ -5771,6 +5787,122 @@ function populateSLAAdmin(){var v=getSLAVals();Object.keys(SLA_DEFAULTS).forEach
 function saveSLASettings(){var v={};Object.keys(SLA_DEFAULTS).forEach(function(k){var i=document.getElementById('sl-'+k);if(i&&i.value.trim())v[k]=i.value.trim();});localStorage.setItem('nexa_sla',JSON.stringify(v));initSLATimes();var n=document.getElementById('sla-notice');if(n){n.style.display='block';setTimeout(function(){n.style.display='none';},3000);}}
 (function(){var _o=showAdminTab;showAdminTab=function(t,b){_o(t,b);if(t==='sla')populateSLAAdmin();};})();
 initSLATimes();
+
+
+
+// ══════════════════════════════════════════
+// ── GLOBAL EDIT MODE SYSTEM ──
+// ══════════════════════════════════════════
+
+var _editMode = false;
+var _editDebounce = {};
+
+function toggleEditMode() {
+  _editMode = !_editMode;
+  document.body.classList.toggle('edit-mode', _editMode);
+  var btn = document.getElementById('edit-mode-btn');
+  if (btn) {
+    btn.classList.toggle('active', _editMode);
+    btn.innerHTML = _editMode
+      ? '<span class="em-dot"></span> ✓ Editing'
+      : '<span class="em-dot"></span> Edit';
+    btn.title = _editMode ? 'Click to stop editing' : 'Click to edit any text';
+  }
+  // Enable/disable contenteditable on all tagged elements
+  document.querySelectorAll('[data-ed][data-eid]').forEach(function(el) {
+    el.contentEditable = _editMode ? 'true' : 'false';
+    if (!_editMode) el.removeAttribute('contenteditable');
+  });
+  if (_editMode) {
+    // Attach save handlers to all editable elements
+    document.querySelectorAll('[data-ed][data-eid]').forEach(function(el) {
+      if (!el._editBound) {
+        el._editBound = true;
+        el.addEventListener('input', function() {
+          var eid = el.getAttribute('data-eid');
+          clearTimeout(_editDebounce[eid]);
+          _editDebounce[eid] = setTimeout(function() { persistEdit(eid, el.innerHTML); }, 600);
+        });
+        el.addEventListener('blur', function() {
+          var eid = el.getAttribute('data-eid');
+          persistEdit(eid, el.innerHTML);
+        });
+      }
+    });
+  }
+}
+
+function persistEdit(eid, html) {
+  try {
+    var edits = JSON.parse(localStorage.getItem('nexa_edits') || '{}');
+    edits[eid] = html;
+    localStorage.setItem('nexa_edits', JSON.stringify(edits));
+    showEditToast();
+  } catch(e) {}
+}
+
+function loadEdits() {
+  try {
+    var edits = JSON.parse(localStorage.getItem('nexa_edits') || '{}');
+    Object.keys(edits).forEach(function(eid) {
+      var el = document.querySelector('[data-eid="' + eid + '"]');
+      if (el) el.innerHTML = edits[eid];
+    });
+  } catch(e) {}
+}
+
+function showEditToast() {
+  var t = document.getElementById('edit-toast');
+  if (!t) return;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 1800);
+}
+
+function resetAllEdits() {
+  if (!confirm('Reset ALL custom edits back to defaults? This cannot be undone.')) return;
+  localStorage.removeItem('nexa_edits');
+  location.reload();
+}
+
+// ── KPI TARGET & WEIGHT LIVE UPDATE FIX ──
+// Patch saveKpiEdits to also re-render the KPI scorecard after saving
+(function() {
+  if (typeof saveKpiEdits !== 'function') return;
+  var _origSave = saveKpiEdits;
+  saveKpiEdits = function() {
+    _origSave();
+    // After saving, update all .kpi-target and .kpi-wt spans in the scorecard
+    // by reading from the admin inputs directly
+    document.querySelectorAll('#admin-kpi input[id^="kt-"]').forEach(function(inp) {
+      // inp.id format: kt-{role}-{si}-{ki}
+      var parts = inp.id.replace('kt-','').split('-');
+      if (parts.length < 3) return;
+      var role = parts[0], si = parts[1], ki = parts[2];
+      // Find matching kpi-target in the scorecard
+      var selector = '#kpi-' + role + ' .kpi-section:nth-child(' + (parseInt(si)+1) + ') .kpi-item:nth-child(' + (parseInt(ki)+1) + ') .kpi-target';
+      var el = document.querySelector(selector);
+      if (el) el.textContent = inp.value;
+    });
+    document.querySelectorAll('#admin-kpi input[id^="kw-"]').forEach(function(inp) {
+      var parts = inp.id.replace('kw-','').split('-');
+      if (parts.length < 3) return;
+      var role = parts[0], si = parts[1], ki = parts[2];
+      var selector = '#kpi-' + role + ' .kpi-section:nth-child(' + (parseInt(si)+1) + ') .kpi-item:nth-child(' + (parseInt(ki)+1) + ') .kpi-wt';
+      var el = document.querySelector(selector);
+      if (el) el.textContent = inp.value + '%';
+    });
+    // Also re-run renderKPI to ensure scores recalculate
+    if (typeof renderKPI === 'function') {
+      var activeTab = document.querySelector('#view-kpi .rtab.active');
+      if (activeTab) activeTab.click();
+    }
+    var n = document.getElementById('kpi-notice');
+    if (n) { n.style.display='block'; setTimeout(function(){n.style.display='none';},3000); }
+  };
+})();
+
+// Load saved edits on startup
+loadEdits();
 
 </script>
 </body>
