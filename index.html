@@ -654,13 +654,13 @@ Admin Panel
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">📌 Communication Standards</div><div class="cs">All team members · All channels</div></div></div><div class="chv">▲</div></div>
 <div class="cb">
 <div class="gc3" style="margin-top:6px;margin-bottom:12px">
-<div class="mm"><div class="mm-v">4hrs</div><div class="mm-l">Email</div><div class="mm-d">Respond or acknowledge within 4 working hours</div></div>
-<div class="mm"><div class="mm-v">2hrs</div><div class="mm-l">Slack</div><div class="mm-d">Acknowledge in team channels. Emoji reaction counts.</div></div>
+<div class="mm"><div class="mm-v"><span class="et" data-k="comm-email">4hrs</span></div><div class="mm-l">Email</div><div class="mm-d">Respond or acknowledge within 4 working hours</div></div>
+<div class="mm"><div class="mm-v"><span class="et" data-k="comm-slack">2hrs</span></div><div class="mm-l">Slack</div><div class="mm-d">Acknowledge in team channels. Emoji reaction counts.</div></div>
 <div class="mm"><div class="mm-v">Daily</div><div class="mm-l">Forecast</div><div class="mm-d">All tasks updated before end of day without PM reminder</div></div>
 </div>
 <div class="ir"><span class="ik">Timelines to clients</span><span class="iv">Zero instances without PM confirmation first</span></div>
 <div class="ir"><span class="ik">At-risk escalation</span><span class="iv">Escalate to PM within 24 hours of identifying risk</span></div>
-<div class="ir"><span class="ik">Meeting notes</span><span class="iv">Distributed within 2 hours of meeting end</span></div>
+<div class="ir"><span class="ik">Meeting notes</span><span class="iv">Distributed within <span class="et" data-k="comm-notes">2 hours</span> of meeting end</span></div>
 </div>
 </div>
 </div>
@@ -1709,14 +1709,14 @@ Admin Panel
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">1. Delivery Timeframes</div><div class="cs">Response times and delivery targets — linked to KPIs</div></div></div><div class="chv">▲</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Service / Task</th><th>Response Time</th><th>Delivery Target</th><th>Priority</th><th>KPI Metric</th></tr></thead><tbody>
-<tr><td class="km">Homepage concept (2 full-fidelity directions)</td><td>≤ 4 hrs after brief</td><td><span class="tb">≤ 8 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">First draft speed ≤ 8hrs</span></td></tr>
-<tr><td class="km">Inner page design (per page)</td><td>—</td><td><span class="tb">≤ 4 hrs per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Revision round (client feedback application)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ 1 business day</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Revision rounds ≤ 2</span></td></tr>
+<tr><td class="km">Homepage concept (2 full-fidelity directions)</td><td>≤ <span class="et" data-k="des-homepage-brief">4 hrs</span> after brief</td><td><span class="tb">≤ 8 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">First draft speed ≤ 8hrs</span></td></tr>
+<tr><td class="km">Inner page design (per page)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="des-inner-page">4 hrs</span> per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Revision round (client feedback application)</td><td>≤ <span class="et" data-k="des-revision-ack">2 hrs</span> acknowledgement</td><td><span class="tb">≤ <span class="et" data-k="des-revision-complete">1 business day</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Revision rounds ≤ 2</span></td></tr>
 <tr><td class="km">Responsive adaptations (tablet + mobile)</td><td>—</td><td>Included in page estimate</td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Handoff quality ≥ 90%</span></td></tr>
-<tr><td class="km">Landing page design</td><td>≤ 2 hrs after brief</td><td><span class="tb">≤ 5 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Design QA corrections (post internal PM review)</td><td>—</td><td><span class="tb">≤ 3 hours</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Internal QA compliance 100%</span></td></tr>
-<tr><td class="km">Handover file preparation (Figma + assets)</td><td>—</td><td><span class="tb">≤ 2 hrs after approval</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Handoff quality ≥ 90%</span></td></tr>
-<tr><td class="km">Emergency redesign (Partner-approved)</td><td>≤ 1 hr acknowledgement</td><td>Agreed case-by-case</td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Written Partner approval required</span></td></tr>
+<tr><td class="km">Landing page design</td><td>≤ <span class="et" data-k="des-landing-brief">2 hrs</span> after brief</td><td><span class="tb">≤ 5 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Design QA corrections (post internal PM review)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="des-qa-fix">3 hours</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Internal QA compliance 100%</span></td></tr>
+<tr><td class="km">Handover file preparation (Figma + assets)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="des-handover">2 hrs</span> after approval</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Handoff quality ≥ 90%</span></td></tr>
+<tr><td class="km">Emergency redesign (Partner-approved)</td><td>≤ <span class="et" data-k="des-emergency-ack">1 hr</span> acknowledgement</td><td>Agreed case-by-case</td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Written Partner approval required</span></td></tr>
 </tbody></table>
 </div>
 </div>
@@ -1794,15 +1794,15 @@ Admin Panel
 <div class="ch" onclick="tc(this.parentElement)"><div class="chl"><div><div class="ct">1. Delivery Timeframes</div><div class="cs">Response times and delivery targets — linked to KPIs</div></div></div><div class="chv">▲</div></div>
 <div class="cb">
 <table class="tbl"><thead><tr><th>Service / Task</th><th>Response Time</th><th>Delivery Target</th><th>Priority</th><th>KPI Metric</th></tr></thead><tbody>
-<tr><td class="km">Homepage build (from approved design handoff)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ 10 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">First homepage build speed</span></td></tr>
-<tr><td class="km">Inner pages — template-based (per page)</td><td>—</td><td><span class="tb">≤ 3 hrs per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Inner pages — custom layout (per page)</td><td>—</td><td><span class="tb">≤ 5 hrs per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Homepage build (from approved design handoff)</td><td>≤ <span class="et" data-k="dev-homepage-ack">2 hrs</span> acknowledgement</td><td><span class="tb">≤ 10 working hours</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">First homepage build speed</span></td></tr>
+<tr><td class="km">Inner pages — template-based (per page)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="dev-inner-template">3 hrs</span> per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Inner pages — custom layout (per page)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="dev-inner-custom">5 hrs</span> per page</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
 <tr><td class="km">Form &amp; CRM integration setup</td><td>—</td><td><span class="tb">≤ 4 hours</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Integration quality 100%</span></td></tr>
-<tr><td class="km">Landing page — template-based</td><td>≤ 2 hrs</td><td><span class="tb">≤ 4 working days</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Landing page — custom design</td><td>≤ 2 hrs</td><td><span class="tb">≤ 7 working days</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">Bug fix (post-launch warranty period)</td><td>≤ 2 hrs</td><td><span class="tb">≤ 1 business day</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Bug rate ≤ 2/feature</span></td></tr>
-<tr><td class="km">Emergency hotfix (live site down)</td><td>≤ 30 mins</td><td><span class="tb">≤ 2 hours</span></td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Site uptime ≥ 99%</span></td></tr>
-<tr><td class="km">Performance optimisation (existing site)</td><td>—</td><td><span class="tb">≤ 1 working day</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">PageSpeed ≥ 90 KPI</span></td></tr>
+<tr><td class="km">Landing page — template-based</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="dev-landing-template">4 working days</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Landing page — custom design</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="dev-landing-custom">7 working days</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">Bug fix (post-launch warranty period)</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="dev-bugfix-complete">1 business day</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Bug rate ≤ 2/feature</span></td></tr>
+<tr><td class="km">Emergency hotfix (live site down)</td><td>≤ 30 mins</td><td><span class="tb">≤ <span class="et" data-k="dev-hotfix-complete">2 hours</span></span></td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Site uptime ≥ 99%</span></td></tr>
+<tr><td class="km">Performance optimisation (existing site)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="dev-perf-complete">1 working day</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">PageSpeed ≥ 90 KPI</span></td></tr>
 <tr><td class="km">Developer QA checklist completion</td><td>—</td><td>Before every PM submission</td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">100% required — no exceptions</span></td></tr>
 </tbody></table>
 </div>
@@ -1882,12 +1882,12 @@ Admin Panel
 <div class="cb">
 <table class="tbl"><thead><tr><th>Service / Task</th><th>Response Time</th><th>Delivery Target</th><th>Priority</th><th>KPI Metric</th></tr></thead><tbody>
 <tr><td class="km">Form &amp; CRM integration setup</td><td>—</td><td><span class="tb">≤ 4 hours</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">HubSpot workflow build (standard)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ 1 working day</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">HubSpot workflow build (complex multi-step)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ 2 working days</span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
-<tr><td class="km">GTM / tracking setup (per site)</td><td>—</td><td><span class="tb">≤ 3 hours</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Tracking verification 100%</span></td></tr>
+<tr><td class="km">HubSpot workflow build (standard)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ <span class="et" data-k="int-workflow-std">1 working day</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">HubSpot workflow build (complex multi-step)</td><td>≤ 2 hrs acknowledgement</td><td><span class="tb">≤ <span class="et" data-k="int-workflow-complex">2 working days</span></span></td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">On-time delivery ≥ 90%</span></td></tr>
+<tr><td class="km">GTM / tracking setup (per site)</td><td>—</td><td><span class="tb">≤ <span class="et" data-k="int-gtm-setup">3 hours</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Tracking verification 100%</span></td></tr>
 <tr><td class="km">API integration (scoped)</td><td>≤ 2 hrs acknowledgement</td><td>Per scoped estimate</td><td><span style="color:var(--p);font-weight:600;font-size:11px">Standard</span></td><td><span class="wp">Zero production failures</span></td></tr>
-<tr><td class="km">Integration fix (post-go-live bug)</td><td>≤ 2 hrs</td><td><span class="tb">≤ 1 business day</span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Bug rate ≤ 5%</span></td></tr>
-<tr><td class="km">Critical integration failure (live)</td><td>≤ 30 mins</td><td><span class="tb">≤ 2 hours</span></td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Zero production failures KPI</span></td></tr>
+<tr><td class="km">Integration fix (post-go-live bug)</td><td>≤ 2 hrs</td><td><span class="tb">≤ <span class="et" data-k="int-fix-complete">1 business day</span></span></td><td><span style="color:var(--amb);font-weight:600;font-size:11px">High</span></td><td><span class="wp">Bug rate ≤ 5%</span></td></tr>
+<tr><td class="km">Critical integration failure (live)</td><td>≤ 30 mins</td><td><span class="tb">≤ <span class="et" data-k="int-critical-complete">2 hours</span></span></td><td><span style="color:var(--red);font-weight:600;font-size:11px">Critical</span></td><td><span class="wp">Zero production failures KPI</span></td></tr>
 </tbody></table>
 </div>
 </div>
@@ -3444,6 +3444,7 @@ Admin Panel
 <button class="rtab" onclick="showAdminTab('kpi',this)">🎯 KPI Targets</button>
 <button class="rtab" onclick="showAdminTab('onboarding',this)">📋 Onboarding Steps</button>
 <button class="rtab" onclick="showAdminTab('general',this)">⚙️ General Settings</button>
+<button class="rtab" onclick="showAdminTab('sla',this)">⏱️ SLA &amp; Timelines</button>
 </div>
 <div id="admin-team" class="rp active">
 <div class="admin-notice" id="team-notice">✓ Team member saved successfully.</div>
@@ -3683,7 +3684,48 @@ Admin Panel
 </div>
 </div>
 </div>
-</div></div>
+</div><div id="admin-sla" class="rp">
+<div class="admin-notice" id="sla-notice" style="display:none">✅ SLA &amp; Timelines saved — all time values updated.</div>
+<div class="alert" style="margin-bottom:14px">Edit delivery timeframes and response windows below. Changes apply <strong>instantly</strong> across SLA Playbooks, KPI cards, and Website Process. Saved to your browser.</div>
+<div class="admin-card"><div class="admin-card-header"><div class="admin-card-title">🎨 Designer SLA — Delivery Timeframes</div></div>
+<div class="admin-form"><div class="admin-field-grid">
+<div class="admin-field"><label class="admin-label">Homepage Concept — after brief</label><input class="admin-input" id="sl-des-homepage-brief" type="text" placeholder="4 hrs"></div>
+<div class="admin-field"><label class="admin-label">Inner Page Design — per page</label><input class="admin-input" id="sl-des-inner-page" type="text" placeholder="4 hrs"></div>
+<div class="admin-field"><label class="admin-label">Revision Round — acknowledgement</label><input class="admin-input" id="sl-des-revision-ack" type="text" placeholder="2 hrs"></div>
+<div class="admin-field"><label class="admin-label">Revision Round — completion</label><input class="admin-input" id="sl-des-revision-complete" type="text" placeholder="1 business day"></div>
+<div class="admin-field"><label class="admin-label">Landing Page Design — after brief</label><input class="admin-input" id="sl-des-landing-brief" type="text" placeholder="2 hrs"></div>
+<div class="admin-field"><label class="admin-label">QA Corrections — completion</label><input class="admin-input" id="sl-des-qa-fix" type="text" placeholder="3 hours"></div>
+<div class="admin-field"><label class="admin-label">Handover File — after approval</label><input class="admin-input" id="sl-des-handover" type="text" placeholder="2 hrs"></div>
+<div class="admin-field"><label class="admin-label">Emergency Redesign — acknowledgement</label><input class="admin-input" id="sl-des-emergency-ack" type="text" placeholder="1 hr"></div>
+</div></div></div>
+<div class="admin-card"><div class="admin-card-header"><div class="admin-card-title">💻 Developer SLA — Delivery Timeframes</div></div>
+<div class="admin-form"><div class="admin-field-grid">
+<div class="admin-field"><label class="admin-label">Homepage Build — acknowledgement</label><input class="admin-input" id="sl-dev-homepage-ack" type="text" placeholder="2 hrs"></div>
+<div class="admin-field"><label class="admin-label">Inner Pages (template) — per page</label><input class="admin-input" id="sl-dev-inner-template" type="text" placeholder="3 hrs"></div>
+<div class="admin-field"><label class="admin-label">Inner Pages (custom) — per page</label><input class="admin-input" id="sl-dev-inner-custom" type="text" placeholder="5 hrs"></div>
+<div class="admin-field"><label class="admin-label">Landing Page (template) — completion</label><input class="admin-input" id="sl-dev-landing-template" type="text" placeholder="4 working days"></div>
+<div class="admin-field"><label class="admin-label">Landing Page (custom) — completion</label><input class="admin-input" id="sl-dev-landing-custom" type="text" placeholder="7 working days"></div>
+<div class="admin-field"><label class="admin-label">Bug Fix Warranty — completion</label><input class="admin-input" id="sl-dev-bugfix-complete" type="text" placeholder="1 business day"></div>
+<div class="admin-field"><label class="admin-label">Emergency Hotfix — completion</label><input class="admin-input" id="sl-dev-hotfix-complete" type="text" placeholder="2 hours"></div>
+<div class="admin-field"><label class="admin-label">Performance Optimisation — completion</label><input class="admin-input" id="sl-dev-perf-complete" type="text" placeholder="1 working day"></div>
+</div></div></div>
+<div class="admin-card"><div class="admin-card-header"><div class="admin-card-title">🔗 Integration SLA — Delivery Timeframes</div></div>
+<div class="admin-form"><div class="admin-field-grid">
+<div class="admin-field"><label class="admin-label">HubSpot Workflow (standard)</label><input class="admin-input" id="sl-int-workflow-std" type="text" placeholder="1 working day"></div>
+<div class="admin-field"><label class="admin-label">HubSpot Workflow (complex)</label><input class="admin-input" id="sl-int-workflow-complex" type="text" placeholder="2 working days"></div>
+<div class="admin-field"><label class="admin-label">GTM / Tracking Setup</label><input class="admin-input" id="sl-int-gtm-setup" type="text" placeholder="3 hours"></div>
+<div class="admin-field"><label class="admin-label">Integration Fix (post-live)</label><input class="admin-input" id="sl-int-fix-complete" type="text" placeholder="1 business day"></div>
+<div class="admin-field"><label class="admin-label">Critical Integration Failure</label><input class="admin-input" id="sl-int-critical-complete" type="text" placeholder="2 hours"></div>
+</div></div></div>
+<div class="admin-card"><div class="admin-card-header"><div class="admin-card-title">💬 Communication Standards</div></div>
+<div class="admin-form"><div class="admin-field-grid">
+<div class="admin-field"><label class="admin-label">Email Response Window</label><input class="admin-input" id="sl-comm-email" type="text" placeholder="4hrs"></div>
+<div class="admin-field"><label class="admin-label">Slack Acknowledgement Window</label><input class="admin-input" id="sl-comm-slack" type="text" placeholder="2hrs"></div>
+<div class="admin-field"><label class="admin-label">Meeting Notes Distribution</label><input class="admin-input" id="sl-comm-notes" type="text" placeholder="2 hours"></div>
+</div></div></div>
+<div style="margin-top:16px;text-align:right"><button class="btn-primary" onclick="saveSLASettings()">💾 Save SLA &amp; Timelines</button></div>
+</div>
+</div>
 </main>
 
 <script>
@@ -5725,6 +5767,16 @@ renderProc('hs');
 loadAdminTeam();
 renderAdminTeam();
 loadGeneralSettings();
+
+// ── SLA & TIMELINES EDITOR ──
+const SLA_DEFAULTS={'des-homepage-brief':'4 hrs','des-inner-page':'4 hrs','des-revision-ack':'2 hrs','des-revision-complete':'1 business day','des-landing-brief':'2 hrs','des-qa-fix':'3 hours','des-handover':'2 hrs','des-emergency-ack':'1 hr','dev-homepage-ack':'2 hrs','dev-inner-template':'3 hrs','dev-inner-custom':'5 hrs','dev-landing-template':'4 working days','dev-landing-custom':'7 working days','dev-bugfix-complete':'1 business day','dev-hotfix-complete':'2 hours','dev-perf-complete':'1 working day','int-workflow-std':'1 working day','int-workflow-complex':'2 working days','int-gtm-setup':'3 hours','int-fix-complete':'1 business day','int-critical-complete':'2 hours','comm-email':'4hrs','comm-slack':'2hrs','comm-notes':'2 hours'};
+function getSLAVals(){try{return Object.assign({},SLA_DEFAULTS,JSON.parse(localStorage.getItem('nexa_sla')||'{}'));}catch(e){return Object.assign({},SLA_DEFAULTS);}}
+function initSLATimes(){var v=getSLAVals();document.querySelectorAll('.et[data-k]').forEach(function(el){var k=el.getAttribute('data-k');if(v[k]!==undefined)el.textContent=v[k];});}
+function populateSLAAdmin(){var v=getSLAVals();Object.keys(SLA_DEFAULTS).forEach(function(k){var i=document.getElementById('sl-'+k);if(i)i.value=v[k]||SLA_DEFAULTS[k];});}
+function saveSLASettings(){var v={};Object.keys(SLA_DEFAULTS).forEach(function(k){var i=document.getElementById('sl-'+k);if(i&&i.value.trim())v[k]=i.value.trim();});localStorage.setItem('nexa_sla',JSON.stringify(v));initSLATimes();var n=document.getElementById('sla-notice');if(n){n.style.display='block';setTimeout(function(){n.style.display='none';},3000);}}
+(function(){var _o=showAdminTab;showAdminTab=function(t,b){_o(t,b);if(t==='sla')populateSLAAdmin();};})();
+initSLATimes();
+
 </script>
 </body>
 </html>
