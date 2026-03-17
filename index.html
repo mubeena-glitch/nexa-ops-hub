@@ -536,15 +536,14 @@ body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--b
 <svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
 Dashboard
 </button>
+<button class="nb" onclick="sv('admin',this)">
+<svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/><path d="M18.364 5.636l1.414-1.414M19.778 12H22M18.364 18.364l1.414 1.414M12 19.778V22M5.636 18.364l-1.414 1.414M2 12h2.222M5.636 5.636L4.222 4.222"/></svg>
+Admin Panel
+</button>
 <button class="nb" onclick="sv('team',this)">
 <svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
 Team Directory
 <span class="nb-badge">7</span>
-</button>
-<button class="nb" onclick="sv('projects',this)" style="display:none">
-<svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-Projects
-<span class="nb-badge">21</span>
 </button>
 <button class="nb" onclick="sv('capacity',this)">
 <svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
@@ -552,7 +551,11 @@ Team Capacity
 </button>
 </div>
 <div class="sb-grp">
-<div class="sb-glbl">Playbooks</div>
+<div class="sb-glbl">Process</div>
+<button class="nb" onclick="sv('process',this)">
+<svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7.414A2 2 0 0020.414 6L15 .586A2 2 0 0013.586 0H5zm10 0v5h5M9 13h6M9 17h3"/></svg>
+Website Process
+</button>
 <button class="nb" onclick="sv('onboarding',this)">
 <svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
 Onboarding SOPs
@@ -593,17 +596,6 @@ Escalation Matrix
 <button class="nb" onclick="sv('tools',this)">
 <svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
 Tools & Subscriptions
-</button>
-</div>
-<div class="sb-grp">
-<div class="sb-glbl">Playbook</div>
-<button class="nb" onclick="sv('process',this)">
-<svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7.414A2 2 0 0020.414 6L15 .586A2 2 0 0013.586 0H5zm10 0v5h5M9 13h6M9 17h3"/></svg>
-Website Process
-</button>
-<button class="nb" onclick="sv('admin',this)">
-<svg class="nb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/><path d="M18.364 5.636l1.414-1.414M19.778 12H22M18.364 18.364l1.414 1.414M12 19.778V22M5.636 18.364l-1.414 1.414M2 12h2.222M5.636 5.636L4.222 4.222"/></svg>
-Admin Panel
 </button>
 </div>
 <div class="sb-bottom">
